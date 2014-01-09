@@ -1,6 +1,6 @@
 MIDlet-Name: CK_17
 MIDlet-Version: 1.0.0
 MIDlet-Vendor: FIRST
-MIDlet-1: KrunchBot, , edu.wpi.first.wpilibj.templates.KrunchBot
+MIDlet-1: CK_17, , krunch17.CK_17
 MicroEdition-Profile: IMP-1.0
 MicroEdition-Configuration: CLDC-1.1
