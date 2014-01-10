@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.can.CANTimeoutException;
  */
 public class RobotMap {
  
-    public static CANJaguar frontLeftWheel, frontRightWheel, rearLeftWheel,
-            rearRightWheel;
+    public static CANJaguar leftFrontMotor, rightFrontMotor, leftRearMotor,
+            rightRearMotor;
     public static RobotDrive robotDrive;
     
     public static void init(){
@@ -29,20 +29,18 @@ public class RobotMap {
     {
         // Init Drive Wheels
         try {
-            frontLeftWheel = new CANJaguar(1);
-            frontRightWheel = new CANJaguar(2);
-            rearLeftWheel = new CANJaguar(3);
-            rearRightWheel = new CANJaguar(4);
+            leftFrontMotor = new CANJaguar(1);
+            leftRearMotor = new CANJaguar(2);
+            rightFrontMotor = new CANJaguar(3);
+            rightRearMotor = new CANJaguar(4);
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
         
         // Init RobotDrive
-        robotDrive = new RobotDrive(frontLeftWheel, rearLeftWheel, 
-                frontRightWheel, rearRightWheel);
-//        robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
-//        robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-//        robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-//        robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+        robotDrive = new RobotDrive(leftFrontMotor, leftRearMotor, 
+                rightFrontMotor, rightRearMotor);
+        robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+        robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
     }
 }

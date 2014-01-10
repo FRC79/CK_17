@@ -15,14 +15,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 
-    CANJaguar frontL, frontR, rearL, rearR;
+    CANJaguar leftF, rightF, leftR, rightR;
     RobotDrive drive;
     
     public Drivetrain(){
-        frontL = RobotMap.frontLeftWheel;
-        frontR = RobotMap.frontRightWheel;
-        rearL = RobotMap.rearLeftWheel;
-        rearR = RobotMap.rearRightWheel;
+        leftF = RobotMap.leftFrontMotor;
+        rightF = RobotMap.rightFrontMotor;
+        leftR = RobotMap.leftRearMotor;
+        rightR = RobotMap.rightRearMotor;
         drive = RobotMap.robotDrive;
     }
     
