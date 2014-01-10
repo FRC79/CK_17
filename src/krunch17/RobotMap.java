@@ -29,10 +29,10 @@ public class RobotMap {
     {
         // Init Drive Wheels
         try {
-            leftFrontMotor = new CANJaguar(1);
-            leftRearMotor = new CANJaguar(2);
-            rightFrontMotor = new CANJaguar(3);
-            rightRearMotor = new CANJaguar(4);
+            leftFrontMotor = new CANJaguar(2);
+            leftRearMotor = new CANJaguar(3);
+            rightFrontMotor = new CANJaguar(4);
+            rightRearMotor = new CANJaguar(5);
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
