@@ -2,6 +2,8 @@ package krunch17;
 
 
 import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 
@@ -16,6 +18,8 @@ public class RobotMap {
     public static CANJaguar leftFrontMotor, rightFrontMotor, leftRearMotor,
             rightRearMotor;
     public static RobotDrive robotDrive;
+    public static Relay compressor;
+    public static DigitalInput pressureSwitch;
     
     public static void init(){
         loadComponents(true); // Used to init CSVs and all components
@@ -42,5 +46,9 @@ public class RobotMap {
                 rightFrontMotor, rightRearMotor);
         robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+        
+        // Init Compressor and Pressure Switch
+        compressor = new Relay(1);
+        pressureSwitch = new DigitalInput(1);
     }
 }
