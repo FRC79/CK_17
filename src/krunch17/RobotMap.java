@@ -46,6 +46,8 @@ public class RobotMap {
                 rightFrontMotor, rightRearMotor);
         robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+        robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+        robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
         
         // Init Compressor and Pressure Switch
         compressor = new Relay(1);

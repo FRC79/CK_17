@@ -21,12 +21,12 @@ public class CK_17 extends IterativeRobot {
     Command arcadeDriveCommand;
 
     public void robotInit() {
-        // instantiate commands
-        arcadeDriveCommand = new ArcadeDrive();
-
         // Initialize all subsystems
         RobotMap.init();
         CommandBase.init();
+        
+        // instantiate commands
+        arcadeDriveCommand = new ArcadeDrive();
         
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");
