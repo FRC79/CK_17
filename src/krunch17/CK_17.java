@@ -34,8 +34,8 @@ public class CK_17 extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        // schedule the autonomous command
-//        autonomousCommand.start();
+//        RobotMap.compressor.start(); // Start compressor
+//        autonomousCommand.start(); // schedule the autonomous command
     }
 
     /**
@@ -47,6 +47,7 @@ public class CK_17 extends IterativeRobot {
 
     public void teleopInit() {
 //        autonomousCommand.cancel(); // Make sure auton is finished
+//        RobotMap.compressor.start(); // Start compressor
         arcadeDriveCommand.start(); // Start teleop arcade drive
     }
 
@@ -59,6 +60,7 @@ public class CK_17 extends IterativeRobot {
 
     public void disabledInit() {
 //        Scheduler.getInstance().removeAll(); // Stop all commands
+//        RobotMap.compressor.stop(); // Stop compressor
     }
     
     /**
