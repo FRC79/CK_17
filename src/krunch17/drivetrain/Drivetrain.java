@@ -6,6 +6,7 @@ package krunch17.drivetrain;
 
 import krunch17.RobotMap;
 import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -18,8 +19,11 @@ public class Drivetrain extends Subsystem {
 
     public static final int TICS_PER_REV = 250;
     
+    private boolean shiftState;
+    
     CANJaguar leftF, rightF, leftR, rightR;
     RobotDrive robotDrive;
+    DoubleSolenoid shifter;
     
     public Drivetrain(){
         // Create local references to motors
@@ -50,6 +54,9 @@ public class Drivetrain extends Subsystem {
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
+        
+        // Init shifter
+        shifter = RobotMap.sonicShifter;
     }
     
     public void arcadeDrive(float moveVal, float rotVal){
@@ -68,9 +75,36 @@ public class Drivetrain extends Subsystem {
         set(0.0f);
     }
     
+    private DoubleSolenoid.Value gearSettingToValue(boolean gearSetting){
+        if(gearSetting == Shift.kHigh_Gear){
+            return DoubleSolenoid.Value.kForward;
+        } else {
+            return DoubleSolenoid.Value.kReverse;
+        }
+    }
+    
+    public void shift(boolean gearSetting){
+        shifter.set(gearSettingToValue(gearSetting));
+        shiftState = gearSetting;
+    }
+    
+    public void shiftInverted(){
+        shift(!shiftState);
+    }
+    
     public void initDefaultCommand() {
         /* We want the drivetrain to stop when we don't send it values to
          * prevent CAN timeout errors. */
         setDefaultCommand(new StopDriveMotors()); // May need to add false to run continuously
+    }
+
+    public static class Shift {
+        public final boolean value;
+        static final boolean kHigh_Gear = false;
+        static final boolean kLow_Gear = true;
+        
+        private Shift(boolean value){
+            this.value = value;
+        }
     }
 }

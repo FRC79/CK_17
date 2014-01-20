@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import krunch17.drivetrain.ArcadeDrive;
 import krunch17.drivetrain.DriveStraight;
+import krunch17.drivetrain.ShiftToHighGear;
+import krunch17.drivetrain.ShiftToInverted;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -18,8 +20,8 @@ import krunch17.drivetrain.DriveStraight;
  */
 public class CK_17 extends IterativeRobot {
 
-    Command autonomousCommand;
-    Command arcadeDriveCommand;
+    Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
+            toggleShiftCommand;
 
     public void robotInit() {
         // Initialize all subsystems
@@ -29,6 +31,11 @@ public class CK_17 extends IterativeRobot {
         // instantiate commands
 //        autonomousCommand = new DriveStraight();
         arcadeDriveCommand = new ArcadeDrive();
+        initialShiftCommand = new ShiftToHighGear();
+        toggleShiftCommand = new ShiftToInverted();
+        
+        // Map commands to buttons
+        CommandBase.oi.shiftButton.whenPressed(toggleShiftCommand);
         
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");
@@ -37,6 +44,7 @@ public class CK_17 extends IterativeRobot {
 
     public void autonomousInit() {
 //        RobotMap.compressor.start(); // Start compressor
+        initialShiftCommand.start();
 //        autonomousCommand.start(); // schedule the autonomous command
     }
 
@@ -50,6 +58,7 @@ public class CK_17 extends IterativeRobot {
     public void teleopInit() {
 //        autonomousCommand.cancel(); // Make sure auton is finished
 //        RobotMap.compressor.start(); // Start compressor
+        initialShiftCommand.start();
         arcadeDriveCommand.start(); // Start teleop arcade drive
     }
 
@@ -60,11 +69,15 @@ public class CK_17 extends IterativeRobot {
         Scheduler.getInstance().run();
     }
 
+    
     public void disabledInit() {
         Scheduler.getInstance().removeAll(); // Stop all commands
 //        RobotMap.compressor.stop(); // Stop compressor
     }
-    
+
+    public void testInit() {
+//        RobotMap.compressor.start();  // Start compressor
+    }
     /**
      * This function is called periodically during test mode
      */
