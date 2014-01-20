@@ -39,14 +39,6 @@ public class RobotMap {
             ex.printStackTrace();
         }
         
-        // Init RobotDrive
-        robotDrive = new RobotDrive(leftFrontMotor, leftRearMotor, 
-                rightFrontMotor, rightRearMotor);
-        robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-        robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-        robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-        robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
-        
         // Init Compressor (pressureSwitchChannel,compressorRelayChannel)
 //        compressor = new Compressor(1,1);
     }

@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import krunch17.drivetrain.ArcadeDrive;
+import krunch17.drivetrain.DriveStraight;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,6 +27,7 @@ public class CK_17 extends IterativeRobot {
         CommandBase.init();
         
         // instantiate commands
+//        autonomousCommand = new DriveStraight();
         arcadeDriveCommand = new ArcadeDrive();
         
         System.out.println("--------------------------------------");
@@ -59,7 +61,7 @@ public class CK_17 extends IterativeRobot {
     }
 
     public void disabledInit() {
-//        Scheduler.getInstance().removeAll(); // Stop all commands
+        Scheduler.getInstance().removeAll(); // Stop all commands
 //        RobotMap.compressor.stop(); // Stop compressor
     }
     

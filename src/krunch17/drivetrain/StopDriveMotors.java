@@ -19,7 +19,7 @@ public class StopDriveMotors extends CommandBase {
     }
     
     public StopDriveMotors(boolean runContinuously){
-        requires(drivetrain);
+        requires(drive);
         runsForever = runContinuously;
     }
 
@@ -31,7 +31,7 @@ public class StopDriveMotors extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         // Run this infinitely so that something else has to stop it.
-        drivetrain.stop();
+        drive.stop();
         
         if(!runsForever){
             isFinished = true;

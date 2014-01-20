@@ -14,7 +14,7 @@ import krunch17.util.TeleopHelper;
 public class ArcadeDrive extends CommandBase {
     
     public ArcadeDrive() {
-        requires(drivetrain);
+        requires(drive);
     }
 
     // Called just before this Command runs the first time
@@ -28,7 +28,7 @@ public class ArcadeDrive extends CommandBase {
         double rotOutput = TeleopHelper.mapJoystickToPowerOutput(
                 oi.getDriverJoystick().getRawAxis(1));
         
-        drivetrain.arcadeDrive((float)moveOutput, (float)rotOutput);
+        drive.arcadeDrive((float)moveOutput, (float)rotOutput);
     }
 
     // Make this return true when this Command no longer needs to run execute()

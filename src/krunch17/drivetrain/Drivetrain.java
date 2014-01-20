@@ -7,6 +7,7 @@ package krunch17.drivetrain;
 import krunch17.RobotMap;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -15,27 +16,52 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 
+    public static final int TICS_PER_REV = 250;
+    
     CANJaguar leftF, rightF, leftR, rightR;
-    RobotDrive drive;
+    RobotDrive robotDrive;
     
     public Drivetrain(){
+        // Create local references to motors
         leftF = RobotMap.leftFrontMotor;
         rightF = RobotMap.rightFrontMotor;
         leftR = RobotMap.leftRearMotor;
         rightR = RobotMap.rightRearMotor;
-        drive = RobotMap.robotDrive;
+        
+        // Init RobotDrive
+        robotDrive = new RobotDrive(leftF, leftR, rightF, rightR);
+        // Compensate for inverted motors
+        robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+        robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+        robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+        robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
+        
+        try {
+            // Setup encoders
+            leftF.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
+            rightF.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
+            
+            leftF.configEncoderCodesPerRev(TICS_PER_REV);
+            rightF.configEncoderCodesPerRev(TICS_PER_REV);
+            
+            leftF.changeControlMode(CANJaguar.ControlMode.kPercentVbus);
+            rightF.changeControlMode(CANJaguar.ControlMode.kPercentVbus);
+            
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
     }
     
     public void arcadeDrive(float moveVal, float rotVal){
-        drive.arcadeDrive(moveVal, rotVal);
+        robotDrive.arcadeDrive(moveVal, rotVal);
     }
     
-    public void setLeftAndRightMotorOutputs(float powerLeft, float powerRight){
-        drive.setLeftRightMotorOutputs(powerLeft, powerRight);
+    public void setLandR(float powerLeft, float powerRight){
+        robotDrive.setLeftRightMotorOutputs(powerLeft, powerRight);
     }
     
     public void set(float power){
-        setLeftAndRightMotorOutputs(power, power);
+        setLandR(power, power);
     }
     
     public void stop(){
