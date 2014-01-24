@@ -6,6 +6,7 @@
 package krunch17.intake;
 
 import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import krunch17.RobotMap;
@@ -17,18 +18,24 @@ import krunch17.RobotMap;
 public class Intake extends Subsystem {
 
     CANJaguar rollerLeft, rollerRight;
-    boolean isInverted;
+    DoubleSolenoid armA, armB;
+    boolean isInverted, isExtended;
 
     public Intake(boolean isInverted){
+        this.isInverted = isInverted;
+        isExtended = false;
+        
         rollerLeft = RobotMap.rollerMotorLeft;
         rollerRight = RobotMap.rollerMotorRight;
+        armA = RobotMap.intakeArmA;
+        armB = RobotMap.intakeArmB;
+        
         try {
             rollerLeft.changeControlMode(CANJaguar.ControlMode.kPercentVbus);
             rollerRight.changeControlMode(CANJaguar.ControlMode.kPercentVbus);
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
-        this.isInverted = isInverted;
     }
     
     public Intake(){
@@ -52,6 +59,28 @@ public class Intake extends Subsystem {
             
     public void stopRoller(){
         setRoller(0.0f);
+    }
+    
+    public void setArm(boolean state) {
+        armA.set(state ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse);
+        armB.set(!state ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse);
+        isExtended = state;
+    }
+    
+    public boolean isExtended(){
+        return isExtended;
+    }
+    
+    public void extend(){
+        setArm(true);
+    }
+    
+    public void retract(){
+        setArm(false);
+    }
+    
+    public void invertArmState(){
+        setArm(!isExtended());
     }
     
     public void initDefaultCommand() {
