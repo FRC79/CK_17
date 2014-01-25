@@ -92,6 +92,10 @@ public class Drivetrain extends Subsystem {
         shift(!shiftState);
     }
     
+    public boolean getShiftState(){
+        return shiftState;
+    }
+    
     public void initDefaultCommand() {
         /* We want the drivetrain to stop when we don't send it values to
          * prevent CAN timeout errors. */

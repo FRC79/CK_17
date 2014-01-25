@@ -23,11 +23,24 @@ public class ArcadeDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        double moveOutput = TeleopHelper.mapJoystickToPowerOutput(
-                oi.getDriverJoystick().getRawAxis(2));
-        double rotOutput = TeleopHelper.mapJoystickToPowerOutput(
-                oi.getDriverJoystick().getRawAxis(1));
+        // Get the raw axis data
+        double rawMoveAxis = oi.getDriverJoystick().getRawAxis(2);
+        double rawRotAxis = oi.getDriverJoystick().getRawAxis(1);
         
+        double moveOutput = 0.0;
+        double rotOutput = 0.0;
+        
+        // Pass it through the mapping equation to add driver precision
+        if(drive.getShiftState() == Drivetrain.Shift.kHigh_Gear){
+            moveOutput = TeleopHelper.mJ2POutHighGearMov(rawMoveAxis);
+            rotOutput = TeleopHelper.mJ2POutHighGearRot(rawRotAxis);
+            
+        } else if(drive.getShiftState() == Drivetrain.Shift.kLow_Gear){
+            moveOutput = TeleopHelper.mJ2POutLowGearMov(rawMoveAxis);
+            rotOutput = TeleopHelper.mJ2POutLowGearRot(rawRotAxis);
+        }
+        
+        // Set the drivetrain motors to those corresponding values
         drive.arcadeDrive((float)moveOutput, (float)rotOutput);
     }
 
