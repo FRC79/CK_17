@@ -10,15 +10,15 @@ import krunch17.RobotMap;
 
 /**
  *
- * @author kijan_000
+ * @author Sebastian
  */
-public class InvertArmState extends CommandBase {
+public class ExtendIntake extends CommandBase {
     
     private boolean isFinished;
     
-    public InvertArmState() {
+    public ExtendIntake() {
         requires(intake);
-        setTimeout(RobotMap.PISTON_DELAY); // Wait time to finish task.
+        setTimeout(RobotMap.PISTON_DELAY);  // Wait time to finish task.
     }
 
     // Called just before this Command runs the first time
@@ -29,14 +29,14 @@ public class InvertArmState extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if(!isFinished){
-            intake.invertArmState();
+            intake.extend();
             isFinished = true;
         }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut(); // Wait for the timeout in order to end the task.
+        return isTimedOut();    // Finish the task once the delay is finished
     }
 
     // Called once after isFinished returns true
