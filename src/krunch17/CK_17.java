@@ -6,10 +6,12 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import krunch17.drivetrain.ArcadeDrive;
 import krunch17.drivetrain.DriveStraight;
 import krunch17.drivetrain.ShiftToHighGear;
 import krunch17.drivetrain.ShiftToInverted;
+import krunch17.launcher.TestLauncher;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,7 +23,7 @@ import krunch17.drivetrain.ShiftToInverted;
 public class CK_17 extends IterativeRobot {
 
     Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
-            toggleShiftCommand;
+            toggleShiftCommand, testLauncherCommand;
 
     public void robotInit() {
         // Initialize all subsystems
@@ -34,8 +36,12 @@ public class CK_17 extends IterativeRobot {
         initialShiftCommand = new ShiftToHighGear();
         toggleShiftCommand = new ShiftToInverted();
         
+        testLauncherCommand = new TestLauncher();
+        SmartDashboard.putNumber("RAISE POWER", 0.0);
+        SmartDashboard.putNumber("LOWER POWER", 0.0);
+        
         // Map commands to buttons
-        CommandBase.oi.shiftButton.whenPressed(toggleShiftCommand);
+//        CommandBase.oi.shiftButton.whenPressed(toggleShiftCommand);
         
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");
@@ -44,7 +50,7 @@ public class CK_17 extends IterativeRobot {
 
     public void autonomousInit() {
 //        RobotMap.compressor.start(); // Start compressor
-        initialShiftCommand.start();
+//        initialShiftCommand.start();
 //        autonomousCommand.start(); // schedule the autonomous command
     }
 
@@ -58,8 +64,9 @@ public class CK_17 extends IterativeRobot {
     public void teleopInit() {
 //        autonomousCommand.cancel(); // Make sure auton is finished
 //        RobotMap.compressor.start(); // Start compressor
-        initialShiftCommand.start();
-        arcadeDriveCommand.start(); // Start teleop arcade drive
+//        initialShiftCommand.start();
+//        arcadeDriveCommand.start(); // Start teleop arcade drive
+        testLauncherCommand.start();
     }
 
     /**

@@ -15,10 +15,9 @@ import edu.wpi.first.wpilibj.can.CANTimeoutException;
  * floating around.
  */
 public class RobotMap {
-    public static final double PISTON_DELAY = 0.50;
-    
     public static CANJaguar leftFrontMotor, rightFrontMotor, leftRearMotor,
-            rightRearMotor, rollerMotorLeft, rollerMotorRight; 
+            rightRearMotor, rollerMotorLeft, rollerMotorRight, leftLauncherMotor,
+            rightLauncherMotor; 
     public static RobotDrive robotDrive;
     public static Compressor compressor;
     public static DoubleSolenoid sonicShifter, intakeArmA, intakeArmB;
@@ -40,15 +39,21 @@ public class RobotMap {
             leftRearMotor = new CANJaguar(3);
             rightFrontMotor = new CANJaguar(4);
             rightRearMotor = new CANJaguar(5);
+            
             // Init roller motor
             rollerMotorLeft = new CANJaguar(6);
             rollerMotorRight = new CANJaguar(7);
+            
+            // Init Launcher Motors
+            leftLauncherMotor = new CANJaguar(8);
+            rightLauncherMotor = new CANJaguar(9);
+            
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
                
         // Init Compressor (pressureSwitchChannel, compressorRelayChannel)
-//        compressor = new Compressor(1,1);
+        compressor = new Compressor(1,1);
 
         // Init Solenoids (forwardChannel, reverseChannel) 
         sonicShifter = new DoubleSolenoid(1,2);

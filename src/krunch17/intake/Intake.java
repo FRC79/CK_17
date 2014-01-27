@@ -17,6 +17,8 @@ import krunch17.RobotMap;
  */
 public class Intake extends Subsystem {
 
+    public static final double PISTON_DELAY = 0.50;
+    
     CANJaguar rollerLeft, rollerRight;
     DoubleSolenoid armA, armB;
     boolean isInverted, isExtended;
@@ -84,9 +86,7 @@ public class Intake extends Subsystem {
     }
     
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-        
+        setDefaultCommand(new StopRollerMotors());
     }
     
 }

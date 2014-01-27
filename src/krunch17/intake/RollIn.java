@@ -5,6 +5,7 @@
  */
 package krunch17.intake;
 
+import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import krunch17.CommandBase;
 
 /**
@@ -19,6 +20,12 @@ public class RollIn extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        try {
+            intake.rollerLeft.enableControl();
+            intake.rollerRight.enableControl();
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,7 +35,7 @@ public class RollIn extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
