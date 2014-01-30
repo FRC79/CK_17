@@ -16,7 +16,7 @@ import krunch17.RobotMap;
  */
 public class Launcher extends Subsystem {
 
-    public static final double GEAR_RATIO = 1.0;
+    public static final double GEAR_RATIO = 16.5;
     public static final int TICS_PER_REV = (int)(250 * GEAR_RATIO);
     public static final double LAUNCH_DELAY = 0.50;
     
@@ -29,10 +29,8 @@ public class Launcher extends Subsystem {
         
         try {
             // Configure Jaguars
-//            motorL.configEncoderCodesPerRev(TICS_PER_REV);
             motorR.configEncoderCodesPerRev(TICS_PER_REV);
             
-//            motorL.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
             motorR.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
             
             motorL.changeControlMode(CANJaguar.ControlMode.kPercentVbus);
@@ -52,9 +50,9 @@ public class Launcher extends Subsystem {
         setMotors(0.0f);
     }
     
-    public double getAvgPosition(){
+    public double getRevs(){
         try {
-            return motorL.getPosition();
+            return motorR.getPosition();    // ACCIDENTALLY DID motorL LAST TIME
                     
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
@@ -63,7 +61,7 @@ public class Launcher extends Subsystem {
     }
     
     public double getAngle(){
-        return getAvgPosition() * 360.0;
+        return getRevs() * 360.0;
     }
     
     public void enableMotors(){

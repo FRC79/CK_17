@@ -45,8 +45,8 @@ public class TestLauncher extends CommandBase {
             SmartDashboard.putBoolean("LOWER", false);
         }
 //        
-        SmartDashboard.putNumber("REVS", launcher.getAvgPosition());
-//        SmartDashboard.putNumber("ANGLE", launcher.getAngle());
+        SmartDashboard.putNumber("REVS", launcher.getRevs());
+        SmartDashboard.putNumber("ANGLE", launcher.getAngle());
     }
 
     // Make this return true when this Command no longer needs to run execute()
