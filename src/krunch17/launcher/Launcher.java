@@ -29,10 +29,10 @@ public class Launcher extends Subsystem {
         
         try {
             // Configure Jaguars
-            motorL.configEncoderCodesPerRev(TICS_PER_REV);
+//            motorL.configEncoderCodesPerRev(TICS_PER_REV);
             motorR.configEncoderCodesPerRev(TICS_PER_REV);
             
-            motorL.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
+//            motorL.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
             motorR.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
             
             motorL.changeControlMode(CANJaguar.ControlMode.kPercentVbus);
@@ -44,12 +44,8 @@ public class Launcher extends Subsystem {
     }
     
     public void setMotors(float power){
-        try {
-            motorL.setX(power);
-            motorR.setX(power);
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }
+        motorL.set(-power);
+        motorR.set(power);
     }
     
     public void stop(){
@@ -58,7 +54,7 @@ public class Launcher extends Subsystem {
     
     public double getAvgPosition(){
         try {
-            return (motorL.getPosition() + motorR.getPosition()) / 2.0;
+            return motorL.getPosition();
                     
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();

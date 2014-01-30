@@ -24,23 +24,29 @@ public class TestLauncher extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        launcher.enableMotors(0.0);
-        raisePower = (float) SmartDashboard.getNumber("RAISE POWER") / 100.0f;
-        lowerPower = (float) SmartDashboard.getNumber("LOWER POWER") / 100.0f;
+        launcher.enableMotors();
+//        raisePower = (float) SmartDashboard.getNumber("RAISE POWER") / 100.0f;
+//        lowerPower = (float) SmartDashboard.getNumber("LOWER POWER") / 100.0f;
+        raisePower = 0.5f;
+        lowerPower = -0.5f;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(oi.getDriverJoystick().getRawButton(6)){
+        if(oi.getDriverJoystick().getRawButton(11)){
             launcher.setMotors(raisePower);
-        } else if(oi.getDriverJoystick().getRawButton(7)){
+            SmartDashboard.putBoolean("RAISE", true);
+        } else if(oi.getDriverJoystick().getRawButton(10)){
             launcher.setMotors(lowerPower);
+            SmartDashboard.putBoolean("LOWER", true);
         } else {
             launcher.stop();
+            SmartDashboard.putBoolean("RAISE", false);
+            SmartDashboard.putBoolean("LOWER", false);
         }
-        
+//        
         SmartDashboard.putNumber("REVS", launcher.getAvgPosition());
-        SmartDashboard.putNumber("ANGLE", launcher.getAngle());
+//        SmartDashboard.putNumber("ANGLE", launcher.getAngle());
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -41,23 +41,23 @@ public class RobotMap {
             rightRearMotor = new CANJaguar(5);
             
             // Init roller motor
-            rollerMotorLeft = new CANJaguar(6);
-            rollerMotorRight = new CANJaguar(7);
+//            rollerMotorLeft = new CANJaguar(6);
+//            rollerMotorRight = new CANJaguar(7);
             
             // Init Launcher Motors
-            leftLauncherMotor = new CANJaguar(8);
-            rightLauncherMotor = new CANJaguar(9);
+            leftLauncherMotor = new CANJaguar(7);
+            rightLauncherMotor = new CANJaguar(8);
             
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
                
         // Init Compressor (pressureSwitchChannel, compressorRelayChannel)
-        compressor = new Compressor(1,1);
+//        compressor = new Compressor(1,1);
 
         // Init Solenoids (forwardChannel, reverseChannel) 
-        sonicShifter = new DoubleSolenoid(1,2);
-        intakeArmA = new DoubleSolenoid(3,4);
-        intakeArmB = new DoubleSolenoid(5,6);
+//        sonicShifter = new DoubleSolenoid(1,2);
+//        intakeArmA = new DoubleSolenoid(3,4);
+//        intakeArmB = new DoubleSolenoid(5,6);
     }
 }
