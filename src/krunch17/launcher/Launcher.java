@@ -33,7 +33,8 @@ public class Launcher extends Subsystem {
             
             motorR.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
             
-            motorR.changeControlMode(CANJaguar.ControlMode.kPosition);
+            motorL.changeControlMode(CANJaguar.ControlMode.kPercentVbus);
+            motorR.changeControlMode(CANJaguar.ControlMode.kPercentVbus);
             
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
