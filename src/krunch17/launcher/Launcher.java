@@ -52,7 +52,7 @@ public class Launcher extends Subsystem {
     
     public double getRevs(){
         try {
-            return motorR.getPosition();    // ACCIDENTALLY DID motorL LAST TIME
+            return motorR.getPosition();    
                     
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
@@ -67,7 +67,7 @@ public class Launcher extends Subsystem {
     public void enableMotors(){
         try {
             motorL.enableControl();
-            motorR.enableControl();
+            motorR.enableControl(0.0);
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
