@@ -21,7 +21,7 @@ public class RobotMap {
             rightRearMotor, rollerMotorLeft, rollerMotorRight; 
     public static RobotDrive robotDrive;
     public static Compressor compressor;
-    public static DoubleSolenoid sonicShifter, intakeArmA, intakeArmB;
+    public static DoubleSolenoid sonicShifter, intakeExtenderPiston;
     
     public static void init(){
         loadComponents(true); // Used to init CSVs and all components
@@ -52,7 +52,6 @@ public class RobotMap {
 
         // Init Solenoids (forwardChannel, reverseChannel) 
         sonicShifter = new DoubleSolenoid(1,2);
-        intakeArmA = new DoubleSolenoid(3,4);
-        intakeArmB = new DoubleSolenoid(5,6);
+        intakeExtenderPiston = new DoubleSolenoid(3,4);
     }
 }

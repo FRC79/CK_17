@@ -18,7 +18,7 @@ import krunch17.RobotMap;
 public class Intake extends Subsystem {
 
     CANJaguar rollerLeft, rollerRight;
-    DoubleSolenoid armA, armB;
+    DoubleSolenoid piston;
     boolean isInverted, isExtended;
 
     public Intake(boolean isInverted){
@@ -27,8 +27,7 @@ public class Intake extends Subsystem {
         
         rollerLeft = RobotMap.rollerMotorLeft;
         rollerRight = RobotMap.rollerMotorRight;
-        armA = RobotMap.intakeArmA;
-        armB = RobotMap.intakeArmB;
+        piston = RobotMap.intakeExtenderPiston;
         
         try {
             rollerLeft.changeControlMode(CANJaguar.ControlMode.kPercentVbus);
@@ -61,9 +60,8 @@ public class Intake extends Subsystem {
         setRoller(0.0f);
     }
     
-    public void setArm(boolean state) {
-        armA.set(state ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse);
-        armB.set(!state ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse);
+    public void setPiston(boolean state) {
+        piston.set(state ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse);
         isExtended = state;
     }
     
@@ -72,15 +70,15 @@ public class Intake extends Subsystem {
     }
     
     public void extend(){
-        setArm(true);
+        setPiston(true);
     }
     
     public void retract(){
-        setArm(false);
+        setPiston(false);
     }
     
     public void invertArmState(){
-        setArm(!isExtended());
+        setPiston(!isExtended());
     }
     
     public void initDefaultCommand() {

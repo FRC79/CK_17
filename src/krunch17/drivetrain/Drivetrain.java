@@ -99,7 +99,7 @@ public class Drivetrain extends Subsystem {
     public void initDefaultCommand() {
         /* We want the drivetrain to stop when we don't send it values to
          * prevent CAN timeout errors. */
-        setDefaultCommand(new StopDriveMotors()); // May need to add false to run continuously
+        setDefaultCommand(new StopDriveMotors(true));
     }
 
     public static class Shift {
