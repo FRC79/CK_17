@@ -24,11 +24,12 @@ public class TestLauncher extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        launcher.enableMotors();
+        launcher.resetEncoder();
+        launcher.enableControl();
 //        raisePower = (float) SmartDashboard.getNumber("RAISE POWER") / 100.0f;
 //        lowerPower = (float) SmartDashboard.getNumber("LOWER POWER") / 100.0f;
-        raisePower = 1.0f;
-        lowerPower = -1.0f;
+        raisePower = 0.5f;
+        lowerPower = -0.5f;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -44,7 +45,29 @@ public class TestLauncher extends CommandBase {
             SmartDashboard.putBoolean("RAISE", false);
             SmartDashboard.putBoolean("LOWER", false);
         }
-//        
+        
+        if(launcher.isBottomStopPressed()){
+            SmartDashboard.putBoolean("BOTTOM", true);
+        } else {
+            SmartDashboard.putBoolean("BOTTOM", false);
+        }
+        
+        
+        if(launcher.isTopStopPressed()){
+            SmartDashboard.putBoolean("TOP", true);
+        } else {
+            SmartDashboard.putBoolean("TOP", false);
+        }
+        
+        if(launcher.isBottomStopPressed()){
+            launcher.resetEncoder();
+            launcher.stop();
+        }
+        
+        if(launcher.isTopStopPressed()){
+            launcher.stop();
+        }
+        
         SmartDashboard.putNumber("REVS", launcher.getRevs());
         SmartDashboard.putNumber("ANGLE", launcher.getAngle());
     }
@@ -56,7 +79,7 @@ public class TestLauncher extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        launcher.disableMotors();
+        launcher.disableControl();
     }
 
     // Called when another command which requires one or more of the same

@@ -6,6 +6,7 @@
 package krunch17.launcher;
 
 import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import krunch17.RobotMap;
@@ -20,7 +21,10 @@ public class Launcher extends Subsystem {
     public static final int TICS_PER_REV = (int)(250 * GEAR_RATIO);
     public static final double LAUNCH_DELAY = 0.50;
     
+    private double encoderOffset;
+    
     CANJaguar motorL, motorR;
+    DigitalInput topStop, bottomStop;
     
     public Launcher(){
         // Init local variables
@@ -39,9 +43,22 @@ public class Launcher extends Subsystem {
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
+    
+        bottomStop = RobotMap.bottomStop;
+        topStop = RobotMap.topStop;
+        
+        encoderOffset = 0.0;
     }
     
     public void setMotors(float power){
+        if(isBottomStopPressed() && power < 0.0f){
+            power = 0.0f;
+        }
+        
+        if(isTopStopPressed() && power > 0.0f){
+            power = 0.0f;
+        }
+        
         motorL.set(-power);
         motorR.set(power);
     }
@@ -52,7 +69,7 @@ public class Launcher extends Subsystem {
     
     public double getRevs(){
         try {
-            return motorR.getPosition();    
+            return Math.abs(motorR.getPosition()) - encoderOffset;    
                     
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
@@ -64,7 +81,11 @@ public class Launcher extends Subsystem {
         return getRevs() * 360.0;
     }
     
-    public void enableMotors(){
+    public void resetEncoder(){
+        encoderOffset += getRevs();
+    }
+    
+    public void enableControl(){
         try {
             motorL.enableControl();
             motorR.enableControl(0.0);
@@ -73,22 +94,21 @@ public class Launcher extends Subsystem {
         }
     }
     
-    public void enableMotors(double initialEncoderPosition){
-        try {
-            motorL.enableControl(initialEncoderPosition);
-            motorR.enableControl(initialEncoderPosition);
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }
-    }
-    
-    public void disableMotors(){
+    public void disableControl(){
         try {
             motorL.disableControl();
             motorR.disableControl();
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public boolean isBottomStopPressed(){
+        return bottomStop.get();
+    }
+    
+    public boolean isTopStopPressed(){
+        return topStop.get();
     }
     
     public void initDefaultCommand() {

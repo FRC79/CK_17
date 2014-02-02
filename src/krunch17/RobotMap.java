@@ -3,6 +3,7 @@ package krunch17;
 
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -21,6 +22,7 @@ public class RobotMap {
     public static RobotDrive robotDrive;
     public static Compressor compressor;
     public static DoubleSolenoid sonicShifter, intakeArmA, intakeArmB;
+    public static DigitalInput bottomStop, topStop;
     
     public static void init(){
         loadComponents(true); // Used to init CSVs and all components
@@ -53,11 +55,14 @@ public class RobotMap {
         }
                
         // Init Compressor (pressureSwitchChannel, compressorRelayChannel)
-//        compressor = new Compressor(1,1);
+        compressor = new Compressor(1,1);
 
         // Init Solenoids (forwardChannel, reverseChannel) 
 //        sonicShifter = new DoubleSolenoid(1,2);
 //        intakeArmA = new DoubleSolenoid(3,4);
 //        intakeArmB = new DoubleSolenoid(5,6);
+        
+        bottomStop = new DigitalInput(3);
+        topStop = new DigitalInput(2);
     }
 }
