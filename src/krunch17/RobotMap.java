@@ -4,6 +4,7 @@ package krunch17;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
@@ -22,6 +23,7 @@ public class RobotMap {
     public static RobotDrive robotDrive;
     public static Compressor compressor;
     public static DoubleSolenoid sonicShifter, intakeExtenderPiston;
+    public static Gyro turnGyro;
     
     public static void init(){
         loadComponents(true); // Used to init CSVs and all components
@@ -53,5 +55,8 @@ public class RobotMap {
         // Init Solenoids (forwardChannel, reverseChannel) 
         sonicShifter = new DoubleSolenoid(1,2);
         intakeExtenderPiston = new DoubleSolenoid(3,4);
+        
+        // Init gyroscope
+        turnGyro = new Gyro(1);
     }
 }

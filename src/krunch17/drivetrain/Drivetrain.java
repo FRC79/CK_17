@@ -7,6 +7,7 @@ package krunch17.drivetrain;
 import krunch17.RobotMap;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -17,13 +18,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 
-    public static final int TICS_PER_REV = 250;
+    public static final int TICS_PER_REV = 250; // DOESN'T TAKE INTO ACCOUNT LOW OR HIGH GEARING
+    public static final double CIRCUMFERENCE = 4.0 * Math.PI; // Inches
     
     private boolean shiftState;
+    private double leftEncoderOffset, rightEncoderOffset;
     
     CANJaguar leftF, rightF, leftR, rightR;
     RobotDrive robotDrive;
     DoubleSolenoid shifter;
+    
+    public Gyro turnGyro;
     
     public Drivetrain(){
         // Create local references to motors
@@ -57,12 +62,22 @@ public class Drivetrain extends Subsystem {
         
         // Init shifter
         shifter = RobotMap.sonicShifter;
+        
+        // Init Gyro
+        turnGyro = RobotMap.turnGyro;
     }
+    
+    
+    
     
     public void arcadeDrive(float moveVal, float rotVal){
         robotDrive.arcadeDrive(moveVal, rotVal);
     }
     
+    public void setWithCurve(double power, double curve){
+        robotDrive.drive(power, curve);
+    }
+        
     public void setLandR(float powerLeft, float powerRight){
         robotDrive.setLeftRightMotorOutputs(powerLeft, powerRight);
     }
@@ -74,6 +89,33 @@ public class Drivetrain extends Subsystem {
     public void stop(){
         set(0.0f);
     }
+    
+    
+    
+    public double getAvgRevs(){
+        try {
+            double revsLeft = Math.abs(leftF.getPosition()) - leftEncoderOffset;
+            double revsRight = Math.abs(rightF.getPosition()) - rightEncoderOffset;
+            return (revsLeft + revsRight) / 2;
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+            return 0.0;
+        }
+    }
+    
+    public void resetEncoders(){
+        try {
+            leftEncoderOffset += Math.abs(leftF.getPosition()) - leftEncoderOffset;
+            rightEncoderOffset += Math.abs(rightF.getPosition()) - rightEncoderOffset;
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public static double distanceToRevs(double distanceInInches){
+        return distanceInInches / CIRCUMFERENCE;
+    }
+    
     
     private DoubleSolenoid.Value gearSettingToValue(boolean gearSetting){
         if(gearSetting == Shift.kHigh_Gear){
@@ -95,6 +137,9 @@ public class Drivetrain extends Subsystem {
     public boolean getShiftState(){
         return shiftState;
     }
+    
+    
+    
     
     public void initDefaultCommand() {
         /* We want the drivetrain to stop when we don't send it values to

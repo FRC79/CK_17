@@ -6,8 +6,6 @@
 package krunch17.drivetrain;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.can.CANTimeoutException;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import krunch17.CommandBase;
 
 /**
@@ -16,50 +14,40 @@ import krunch17.CommandBase;
  */
 public class DriveStraight extends CommandBase {
     
-    public DriveStraight() {
+    double revs;
+    double kP = 0.03;
+    
+    public DriveStraight(double distanceInInches) {
         requires(drive);
+        revs = Drivetrain.distanceToRevs(distanceInInches);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        try {
-            drive.leftF.enableControl(0.0);
-            drive.rightF.enableControl(0.0);
-            drive.leftF.setX(0.0);
-            drive.rightF.setX(0.0);
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }
+        drive.resetEncoders();
+        drive.turnGyro.reset(); // May need to put this in Drivetrain constructor
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        try {
-            SmartDashboard.putNumber("L ENC", drive.leftF.getPosition());
-            SmartDashboard.putNumber("R ENC", drive.rightF.getPosition());
-            Timer.delay(0.1);
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }
+        double angle = drive.turnGyro.getAngle(); // get current heading
+        drive.setWithCurve(1.0, -angle*kP); // Proporional compensation
+        Timer.delay(400 / 1000);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return (drive.getAvgRevs() >= revs); // Finish when we get there
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        try {
-            drive.leftF.disableControl();
-            drive.rightF.disableControl();
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }
+        drive.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        drive.stop();
     }
 }
