@@ -29,7 +29,7 @@ public class InvertIntakeExtension extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if(!isFinished){
-            intake.invertArmState();
+            intake.invertPiston();
             isFinished = true;
         }
     }
@@ -41,6 +41,7 @@ public class InvertIntakeExtension extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        intake.setExtendedStateVariable(!intake.isExtended());
     }
 
     // Called when another command which requires one or more of the same

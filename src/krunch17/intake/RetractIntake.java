@@ -41,6 +41,7 @@ public class RetractIntake extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        intake.setExtendedStateVariable(Intake.kRetracted);
     }
 
     // Called when another command which requires one or more of the same

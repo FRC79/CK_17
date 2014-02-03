@@ -31,11 +31,11 @@ public class ArcadeDrive extends CommandBase {
         double rotOutput = 0.0;
         
         // Pass it through the mapping equation to add driver precision
-        if(drive.getShiftState() == Drivetrain.Shift.kHigh_Gear){
+        if(drive.getShiftState() == Drivetrain.kHigh_Gear){
             moveOutput = TeleopHelper.mJ2POutHighGearMov(rawMoveAxis);
             rotOutput = TeleopHelper.mJ2POutHighGearRot(rawRotAxis);
             
-        } else if(drive.getShiftState() == Drivetrain.Shift.kLow_Gear){
+        } else if(drive.getShiftState() == Drivetrain.kLow_Gear){
             moveOutput = TeleopHelper.mJ2POutLowGearMov(rawMoveAxis);
             rotOutput = TeleopHelper.mJ2POutLowGearRot(rawRotAxis);
         }

@@ -17,6 +17,9 @@ import krunch17.RobotMap;
  */
 public class Intake extends Subsystem {
 
+    public static final boolean kExtended = true;
+    public static final boolean kRetracted = false;
+    
     CANJaguar rollerLeft, rollerRight;
     DoubleSolenoid piston;
     boolean isInverted, isExtended;
@@ -62,6 +65,10 @@ public class Intake extends Subsystem {
     
     public void setPiston(boolean state) {
         piston.set(state ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse);
+    }
+    
+    // Sets the state variable after delay has happened
+    public void setExtendedStateVariable(boolean state){
         isExtended = state;
     }
     
@@ -70,14 +77,14 @@ public class Intake extends Subsystem {
     }
     
     public void extend(){
-        setPiston(true);
+        setPiston(kExtended);
     }
     
     public void retract(){
-        setPiston(false);
+        setPiston(kRetracted);
     }
     
-    public void invertArmState(){
+    public void invertPiston(){
         setPiston(!isExtended());
     }
     

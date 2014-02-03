@@ -19,6 +19,9 @@ public class Drivetrain extends Subsystem {
 
     public static final int TICS_PER_REV = 250;
     
+    static final boolean kHigh_Gear = false;
+    static final boolean kLow_Gear = true;
+    
     private boolean shiftState;
     
     CANJaguar leftF, rightF, leftR, rightR;
@@ -75,16 +78,8 @@ public class Drivetrain extends Subsystem {
         set(0.0f);
     }
     
-    private DoubleSolenoid.Value gearSettingToValue(boolean gearSetting){
-        if(gearSetting == Shift.kHigh_Gear){
-            return DoubleSolenoid.Value.kForward;
-        } else {
-            return DoubleSolenoid.Value.kReverse;
-        }
-    }
-    
     public void shift(boolean gearSetting){
-        shifter.set(gearSettingToValue(gearSetting));
+        shifter.set(gearSetting ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse);
         shiftState = gearSetting;
     }
     
@@ -100,15 +95,5 @@ public class Drivetrain extends Subsystem {
         /* We want the drivetrain to stop when we don't send it values to
          * prevent CAN timeout errors. */
         setDefaultCommand(new StopDriveMotors(true));
-    }
-
-    public static class Shift {
-        public final boolean value;
-        static final boolean kHigh_Gear = false;
-        static final boolean kLow_Gear = true;
-        
-        private Shift(boolean value){
-            this.value = value;
-        }
     }
 }
