@@ -26,7 +26,7 @@ public class Intake extends Subsystem {
 
     public Intake(boolean isInverted){
         this.isInverted = isInverted;
-        isExtended = false;
+        isExtended = kRetracted;
         
         rollerLeft = RobotMap.rollerMotorLeft;
         rollerRight = RobotMap.rollerMotorRight;
