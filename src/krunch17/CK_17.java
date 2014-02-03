@@ -10,6 +10,9 @@ import krunch17.drivetrain.ArcadeDrive;
 import krunch17.drivetrain.DriveStraight;
 import krunch17.drivetrain.ShiftToHighGear;
 import krunch17.drivetrain.ShiftToInverted;
+import krunch17.intake.RollIn;
+import krunch17.intake.RollOut;
+import krunch17.intake.StopRollerMotors;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,7 +24,7 @@ import krunch17.drivetrain.ShiftToInverted;
 public class CK_17 extends IterativeRobot {
 
     Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
-            toggleShiftCommand;
+            toggleShiftCommand, rollInCommand, rollOutCommand, stopRollerCommand;
 
     public void robotInit() {
         // Initialize all subsystems
@@ -33,9 +36,16 @@ public class CK_17 extends IterativeRobot {
         arcadeDriveCommand = new ArcadeDrive();
         initialShiftCommand = new ShiftToHighGear();
         toggleShiftCommand = new ShiftToInverted();
+        rollInCommand = new RollIn();
+        rollOutCommand = new RollOut();
+        stopRollerCommand = new StopRollerMotors();
         
         // Map commands to buttons
         CommandBase.oi.shiftButton.whenPressed(toggleShiftCommand);
+        CommandBase.oi.rollInButton.whenPressed(rollInCommand);
+        CommandBase.oi.rollOutButton.whenPressed(rollOutCommand);
+        CommandBase.oi.rollInButton.whenReleased(stopRollerCommand);
+        CommandBase.oi.rollOutButton.whenReleased(stopRollerCommand);
         
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");

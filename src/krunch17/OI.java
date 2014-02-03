@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
     
     public Joystick driverJoystick, shooterGamepad;
-    public JoystickButton shiftButton;
+    public JoystickButton shiftButton, rollInButton, rollOutButton;
     
     public OI()
     {
@@ -21,6 +21,9 @@ public class OI {
         
         // Init joystick buttons
         shiftButton = new JoystickButton(driverJoystick, 8);
+        rollInButton = new JoystickButton(driverJoystick, 11);
+        rollOutButton = new JoystickButton(driverJoystick, 10);
+        
     }
 
     public Joystick getDriverJoystick() {

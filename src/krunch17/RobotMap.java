@@ -18,7 +18,7 @@ public class RobotMap {
     public static final double PISTON_DELAY = 0.50;
     
     public static CANJaguar leftFrontMotor, rightFrontMotor, leftRearMotor,
-            rightRearMotor, rollerMotorLeft, rollerMotorRight; 
+            rightRearMotor, rollerMotors, rollerMotorRight; 
     public static RobotDrive robotDrive;
     public static Compressor compressor;
     public static DoubleSolenoid sonicShifter, intakeExtenderPiston;
@@ -40,9 +40,9 @@ public class RobotMap {
             leftRearMotor = new CANJaguar(3);
             rightFrontMotor = new CANJaguar(4);
             rightRearMotor = new CANJaguar(5);
+
             // Init roller motor
-            rollerMotorLeft = new CANJaguar(6);
-            rollerMotorRight = new CANJaguar(7);
+            rollerMotors = new CANJaguar(6);
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
