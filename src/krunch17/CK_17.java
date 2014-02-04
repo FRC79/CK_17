@@ -41,11 +41,9 @@ public class CK_17 extends IterativeRobot {
         stopRollerCommand = new StopRollerMotors();
         
         // Map commands to buttons
-        CommandBase.oi.shiftButton.whenPressed(toggleShiftCommand);
-        CommandBase.oi.rollInButton.whenPressed(rollInCommand);
-        CommandBase.oi.rollOutButton.whenPressed(rollOutCommand);
-        CommandBase.oi.rollInButton.whenReleased(stopRollerCommand);
-        CommandBase.oi.rollOutButton.whenReleased(stopRollerCommand);
+//        CommandBase.oi.shiftButton.whenPressed(toggleShiftCommand);
+        CommandBase.oi.rollInButton.whileHeld(rollInCommand);
+        CommandBase.oi.rollOutButton.whileHeld(rollOutCommand);
         
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");
@@ -54,7 +52,7 @@ public class CK_17 extends IterativeRobot {
 
     public void autonomousInit() {
 //        RobotMap.compressor.start(); // Start compressor
-        initialShiftCommand.start();
+//        initialShiftCommand.start();
 //        autonomousCommand.start(); // schedule the autonomous command
     }
 
@@ -68,8 +66,8 @@ public class CK_17 extends IterativeRobot {
     public void teleopInit() {
 //        autonomousCommand.cancel(); // Make sure auton is finished
 //        RobotMap.compressor.start(); // Start compressor
-        initialShiftCommand.start();
-        arcadeDriveCommand.start(); // Start teleop arcade drive
+//        initialShiftCommand.start();
+//        arcadeDriveCommand.start(); // Start teleop arcade drive
     }
 
     /**
