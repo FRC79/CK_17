@@ -79,7 +79,7 @@ public class CK_17 extends IterativeRobot {
     
     public void disabledInit() {
         Scheduler.getInstance().removeAll(); // Stop all commands
-        RobotMap.compressor.stop(); // Stop compressor
+//        RobotMap.compressor.stop(); // Stop compressor
     }
 
     public void testInit() {

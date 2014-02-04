@@ -55,7 +55,7 @@ public class RobotMap {
         }
                
         // Init Compressor (pressureSwitchChannel, compressorRelayChannel)
-        compressor = new Compressor(1,1);
+//        compressor = new Compressor(1,1);
 
         // Init Solenoids (forwardChannel, reverseChannel) 
 //        sonicShifter = new DoubleSolenoid(1,2);
