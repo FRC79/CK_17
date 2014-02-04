@@ -28,7 +28,7 @@ public class TestLauncher extends CommandBase {
         launcher.enableControl();
 //        raisePower = (float) SmartDashboard.getNumber("RAISE POWER") / 100.0f;
 //        lowerPower = (float) SmartDashboard.getNumber("LOWER POWER") / 100.0f;
-        raisePower = 0.5f;
+        raisePower = 1.0f;
         lowerPower = -0.5f;
     }
 
