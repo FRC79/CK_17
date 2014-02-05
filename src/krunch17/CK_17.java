@@ -24,7 +24,7 @@ import krunch17.intake.StopRollerMotors;
 public class CK_17 extends IterativeRobot {
 
     Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
-            toggleShiftCommand, rollInCommand, rollOutCommand, stopRollerCommand;
+            toggleShiftCommand, rollInCommand, rollOutCommand;
 
     public void robotInit() {
         // Initialize all subsystems
@@ -33,12 +33,11 @@ public class CK_17 extends IterativeRobot {
         
         // instantiate commands
 //        autonomousCommand = new DriveStraight();
-        arcadeDriveCommand = new ArcadeDrive();
-        initialShiftCommand = new ShiftToHighGear();
-        toggleShiftCommand = new ShiftToInverted();
+//        arcadeDriveCommand = new ArcadeDrive();
+//        initialShiftCommand = new ShiftToHighGear();
+//        toggleShiftCommand = new ShiftToInverted();
         rollInCommand = new RollIn();
         rollOutCommand = new RollOut();
-        stopRollerCommand = new StopRollerMotors();
         
         // Map commands to buttons
 //        CommandBase.oi.shiftButton.whenPressed(toggleShiftCommand);

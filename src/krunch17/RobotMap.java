@@ -18,7 +18,7 @@ public class RobotMap {
     public static final double PISTON_DELAY = 0.50;
     
     public static CANJaguar leftFrontMotor, rightFrontMotor, leftRearMotor,
-            rightRearMotor, rollerMotors, rollerMotorRight; 
+            rightRearMotor, rollerMotors; 
     public static RobotDrive robotDrive;
     public static Compressor compressor;
     public static DoubleSolenoid sonicShifter, intakeExtenderPiston;
@@ -51,7 +51,7 @@ public class RobotMap {
 //        compressor = new Compressor(1,1);
 
         // Init Solenoids (forwardChannel, reverseChannel) 
-        sonicShifter = new DoubleSolenoid(1,2);
-        intakeExtenderPiston = new DoubleSolenoid(3,4);
+//        sonicShifter = new DoubleSolenoid(1,2);
+//        intakeExtenderPiston = new DoubleSolenoid(3,4);
     }
 }

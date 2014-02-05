@@ -20,9 +20,9 @@ public class OI {
         shooterGamepad = new Joystick(2);
         
         // Init joystick buttons
-        shiftButton = new JoystickButton(driverJoystick, 8);
-        rollInButton = new JoystickButton(driverJoystick, 11);
-        rollOutButton = new JoystickButton(driverJoystick, 10);
+//        shiftButton = new JoystickButton(driverJoystick, 8);
+        rollInButton = new JoystickButton(driverJoystick, 7);
+        rollOutButton = new JoystickButton(driverJoystick, 6);
         
     }
 
