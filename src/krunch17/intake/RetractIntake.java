@@ -17,8 +17,7 @@ public class RetractIntake extends CommandBase {
     private boolean isFinished;
     
     public RetractIntake() {
-        requires(intake);
-        setTimeout(RobotMap.PISTON_DELAY);  // Wait time to finish task.
+        setTimeout(intake.PISTON_DELAY);  // Wait time to finish task.
     }
 
     // Called just before this Command runs the first time

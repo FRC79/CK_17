@@ -3,6 +3,7 @@ package krunch17;
 
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -15,13 +16,12 @@ import edu.wpi.first.wpilibj.can.CANTimeoutException;
  * floating around.
  */
 public class RobotMap {
-    public static final double PISTON_DELAY = 0.50;
-    
     public static CANJaguar leftFrontMotor, rightFrontMotor, leftRearMotor,
-            rightRearMotor, rollerMotors; 
+            rightRearMotor, rollerMotors, leftLauncherMotor, rightLauncherMotor; 
     public static RobotDrive robotDrive;
     public static Compressor compressor;
     public static DoubleSolenoid sonicShifter, intakeExtenderPiston;
+    public static DigitalInput bottomStop, topStop;
     
     public static void init(){
         loadComponents(true); // Used to init CSVs and all components
@@ -43,6 +43,11 @@ public class RobotMap {
 
             // Init roller motor
             rollerMotors = new CANJaguar(6);
+            
+            // Init Launcher Motors
+            leftLauncherMotor = new CANJaguar(7);
+            rightLauncherMotor = new CANJaguar(8);
+            
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
@@ -53,5 +58,8 @@ public class RobotMap {
         // Init Solenoids (forwardChannel, reverseChannel) 
 //        sonicShifter = new DoubleSolenoid(1,2);
 //        intakeExtenderPiston = new DoubleSolenoid(3,4);
+        
+        bottomStop = new DigitalInput(3);
+        topStop = new DigitalInput(2);
     }
 }

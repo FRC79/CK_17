@@ -37,11 +37,6 @@ public class Drivetrain extends Subsystem {
         
         // Init RobotDrive
         robotDrive = new RobotDrive(leftF, leftR, rightF, rightR);
-        // Compensate for inverted motors
-        robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-        robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-        robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-        robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
         
         try {
             // Setup encoders

@@ -6,13 +6,14 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import krunch17.drivetrain.ArcadeDrive;
 import krunch17.drivetrain.DriveStraight;
 import krunch17.drivetrain.ShiftToHighGear;
 import krunch17.drivetrain.ShiftToInverted;
 import krunch17.intake.RollIn;
 import krunch17.intake.RollOut;
-import krunch17.intake.StopRollerMotors;
+import krunch17.launcher.TestLauncher;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,7 +25,7 @@ import krunch17.intake.StopRollerMotors;
 public class CK_17 extends IterativeRobot {
 
     Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
-            toggleShiftCommand, rollInCommand, rollOutCommand;
+            toggleShiftCommand, rollInCommand, rollOutCommand, testLauncherCommand;
 
     public void robotInit() {
         // Initialize all subsystems
@@ -36,13 +37,15 @@ public class CK_17 extends IterativeRobot {
 //        arcadeDriveCommand = new ArcadeDrive();
 //        initialShiftCommand = new ShiftToHighGear();
 //        toggleShiftCommand = new ShiftToInverted();
-        rollInCommand = new RollIn();
-        rollOutCommand = new RollOut();
+//        rollInCommand = new RollIn();
+//        rollOutCommand = new RollOut();
+        
+        testLauncherCommand = new TestLauncher();
         
         // Map commands to buttons
 //        CommandBase.oi.shiftButton.whenPressed(toggleShiftCommand);
-        CommandBase.oi.rollInButton.whileHeld(rollInCommand);
-        CommandBase.oi.rollOutButton.whileHeld(rollOutCommand);
+//        CommandBase.oi.rollInButton.whileHeld(rollInCommand);
+//        CommandBase.oi.rollOutButton.whileHeld(rollOutCommand);
         
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");
@@ -67,6 +70,7 @@ public class CK_17 extends IterativeRobot {
 //        RobotMap.compressor.start(); // Start compressor
 //        initialShiftCommand.start();
 //        arcadeDriveCommand.start(); // Start teleop arcade drive
+        testLauncherCommand.start();
     }
 
     /**

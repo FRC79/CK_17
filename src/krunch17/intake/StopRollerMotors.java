@@ -5,6 +5,7 @@
  */
 package krunch17.intake;
 
+import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import krunch17.CommandBase;
 
 /**
@@ -13,20 +14,26 @@ import krunch17.CommandBase;
  */
 public class StopRollerMotors extends CommandBase {
     
-    private boolean isFinished, runsForever;
+    boolean isFinished, runsForever;
     
-    public StopRollerMotors() {
+    public StopRollerMotors(){
         this(false);
     }
     
     public StopRollerMotors(boolean runContinuously){
         requires(intake);
+        isFinished = false;
         runsForever = runContinuously;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        isFinished = false;
+        try {
+            intake.rollerLeft.enableControl();
+            intake.rollerRight.enableControl();
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -45,6 +52,12 @@ public class StopRollerMotors extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        try {
+            intake.rollerLeft.disableControl();
+            intake.rollerRight.disableControl();
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
     }
 
     // Called when another command which requires one or more of the same
