@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 
 /**
@@ -20,7 +19,7 @@ public class RobotMap {
             rightRearMotor, rollerMotors, leftLauncherMotor, rightLauncherMotor; 
     public static RobotDrive robotDrive;
     public static Compressor compressor;
-    public static DoubleSolenoid sonicShifter, intakeExtenderPiston;
+    public static DoubleSolenoid sonicShifter, intakePiston;
     public static DigitalInput bottomStop, topStop;
     
     public static void init(){
@@ -41,7 +40,7 @@ public class RobotMap {
             rightFrontMotor = new CANJaguar(4);
             rightRearMotor = new CANJaguar(5);
 
-            // Init roller motor
+            // Init Roller motor
             rollerMotors = new CANJaguar(6);
             
             // Init Launcher Motors
@@ -57,7 +56,7 @@ public class RobotMap {
 
         // Init Solenoids (forwardChannel, reverseChannel) 
 //        sonicShifter = new DoubleSolenoid(1,2);
-//        intakeExtenderPiston = new DoubleSolenoid(3,4);
+//        intakePiston = new DoubleSolenoid(3,4);
         
         bottomStop = new DigitalInput(3);
         topStop = new DigitalInput(2);

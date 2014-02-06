@@ -19,23 +19,19 @@ public class Intake extends Subsystem {
 
     public static final boolean kExtended = true;
     public static final boolean kRetracted = false;
+    public static final double PISTON_DELAY = 0.50;
+    
+    boolean isInverted, isExtended;
     
     CANJaguar roller;
     DoubleSolenoid piston;
-
-    public static final double PISTON_DELAY = 0.50;
-    
-    CANJaguar rollerLeft, rollerRight;
-    DoubleSolenoid armA, armB;
-
-    boolean isInverted, isExtended;
 
     public Intake(boolean isInverted){
         this.isInverted = isInverted;
         isExtended = kRetracted;
         
         roller = RobotMap.rollerMotors;
-        piston = RobotMap.intakeExtenderPiston;
+        piston = RobotMap.intakePiston;
         
         try {
             roller.changeControlMode(CANJaguar.ControlMode.kPercentVbus);
@@ -74,11 +70,11 @@ public class Intake extends Subsystem {
         return isExtended;
     }
     
-    public void extend(){
+    public void extendPiston(){
         setPiston(kExtended);
     }
     
-    public void retract(){
+    public void retractPiston(){
         setPiston(kRetracted);
     }
     
@@ -87,7 +83,7 @@ public class Intake extends Subsystem {
     }
     
     public void initDefaultCommand() {
-        setDefaultCommand(new StopRollerMotors(true));
+        setDefaultCommand(new StopRoller(true));
     }
     
 }

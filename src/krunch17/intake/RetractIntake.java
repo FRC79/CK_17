@@ -6,7 +6,6 @@
 package krunch17.intake;
 
 import krunch17.CommandBase;
-import krunch17.RobotMap;
 
 /**
  *
@@ -28,7 +27,7 @@ public class RetractIntake extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if(!isFinished){
-            intake.retract();
+            intake.retractPiston();
             isFinished = true;
         }
     }
