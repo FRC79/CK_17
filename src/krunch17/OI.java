@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
     
     public Joystick driverJoystick, shooterGamepad;
-    public JoystickButton shiftButton, rollInButton, rollOutButton;
+    public JoystickButton shiftButton, invertArcadeDriveButton, 
+            toggleIntakeExtensionButton;
     
     public OI()
     {
@@ -20,17 +21,30 @@ public class OI {
         shooterGamepad = new Joystick(2);
         
         // Init joystick buttons
-//        shiftButton = new JoystickButton(driverJoystick, 8);
-        rollInButton = new JoystickButton(driverJoystick, 7);
-        rollOutButton = new JoystickButton(driverJoystick, 6);
+//        shiftButton = new JoystickButton(driverJoystick, 7);
+//        invertArcadeDriveButton = new JoystickButton(driverJoystick, 8);
         
+//        toggleIntakeExtensionButton = new JoystickButton(shooterGamepad, 7);
+    }
+    
+    public float getDPadAxisY(Joystick refJoystick){
+        double val = refJoystick.getRawAxis(6); // Get DPad axis
+    
+        // Scale the input like binary buttons
+        if(val > 0.5){
+            return 1.0f;
+        } else if(val < -0.5){
+            return -1.0f;
+        } else {
+            return 0.0f;
+        }
     }
 
     public Joystick getDriverJoystick() {
         return driverJoystick;
     }
 
-    public Joystick getShooterGamepad() {
+    public Joystick getManipGamepad() {
         return shooterGamepad;
     }
     

@@ -34,23 +34,23 @@ public class RobotMap {
     private static void loadComponents(boolean initCSVs)
     {
         
-        try {
+//        try {
             // Init Drive Wheels
-            leftFrontMotor = new CANJaguar(2);
-            leftRearMotor = new CANJaguar(3);
-            rightFrontMotor = new CANJaguar(4);
-            rightRearMotor = new CANJaguar(5);
+//            leftFrontMotor = new CANJaguar(2);
+//            leftRearMotor = new CANJaguar(3);
+//            rightFrontMotor = new CANJaguar(4);
+//            rightRearMotor = new CANJaguar(5);
 
             // Init roller motor
-            rollerMotors = new CANJaguar(6);
+//            rollerMotors = new CANJaguar(6);
             
             // Init Launcher Motors
-            leftLauncherMotor = new CANJaguar(7);
-            rightLauncherMotor = new CANJaguar(8);
+//            leftLauncherMotor = new CANJaguar(7);
+//            rightLauncherMotor = new CANJaguar(8);
             
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }
+//        } catch (CANTimeoutException ex) {
+//            ex.printStackTrace();
+//        }
                
         // Init Compressor (pressureSwitchChannel, compressorRelayChannel)
 //        compressor = new Compressor(1,1);
@@ -59,7 +59,7 @@ public class RobotMap {
 //        sonicShifter = new DoubleSolenoid(1,2);
 //        intakeExtenderPiston = new DoubleSolenoid(3,4);
         
-        bottomStop = new DigitalInput(3);
-        topStop = new DigitalInput(2);
+//        bottomStop = new DigitalInput(3);
+//        topStop = new DigitalInput(2);
     }
 }

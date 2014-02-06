@@ -22,6 +22,7 @@ public class Drivetrain extends Subsystem {
     static final boolean kHigh_Gear = false;
     static final boolean kLow_Gear = true;
     
+    private boolean driveControlsInverted;
     private boolean shiftState;
     
     CANJaguar leftF, rightF, leftR, rightR;
@@ -34,6 +35,8 @@ public class Drivetrain extends Subsystem {
         rightF = RobotMap.rightFrontMotor;
         leftR = RobotMap.leftRearMotor;
         rightR = RobotMap.rightRearMotor;
+        
+        driveControlsInverted = false;
         
         // Init RobotDrive
         robotDrive = new RobotDrive(leftF, leftR, rightF, rightR);
@@ -57,8 +60,17 @@ public class Drivetrain extends Subsystem {
         shifter = RobotMap.sonicShifter;
     }
     
+    public boolean areDriveControlsInverted(){
+        return driveControlsInverted;
+    }
+    
+    public void setDriveControlsInverted(boolean state){
+        driveControlsInverted = state;
+    }
+    
     public void arcadeDrive(float moveVal, float rotVal){
-        robotDrive.arcadeDrive(moveVal, rotVal);
+        float invMoveVal = (driveControlsInverted) ? -moveVal : moveVal;
+        robotDrive.arcadeDrive(invMoveVal, rotVal);
     }
     
     public void setLandR(float powerLeft, float powerRight){

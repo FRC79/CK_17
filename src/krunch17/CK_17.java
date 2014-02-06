@@ -9,10 +9,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import krunch17.drivetrain.ArcadeDrive;
 import krunch17.drivetrain.DriveStraight;
+import krunch17.drivetrain.InvertArcadeDrive;
 import krunch17.drivetrain.ShiftToHighGear;
 import krunch17.drivetrain.ShiftToInverted;
-import krunch17.intake.RollIn;
-import krunch17.intake.RollOut;
+import krunch17.intake.InvertIntakeExtension;
+import krunch17.intake.RollerTeleop;
 import krunch17.launcher.TestLauncher;
 
 /**
@@ -25,7 +26,7 @@ import krunch17.launcher.TestLauncher;
 public class CK_17 extends IterativeRobot {
 
     Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
-            toggleShiftCommand, rollInCommand, rollOutCommand, testLauncherCommand;
+            testLauncherCommand, rollerControlCommand;
 
     public void robotInit() {
         // Initialize all subsystems
@@ -36,16 +37,14 @@ public class CK_17 extends IterativeRobot {
 //        autonomousCommand = new DriveStraight();
 //        arcadeDriveCommand = new ArcadeDrive();
 //        initialShiftCommand = new ShiftToHighGear();
-//        toggleShiftCommand = new ShiftToInverted();
-//        rollInCommand = new RollIn();
-//        rollOutCommand = new RollOut();
-        
-        testLauncherCommand = new TestLauncher();
+//        rollerControlCommand = new RollerTeleop();
+//        testLauncherCommand = new TestLauncher();
         
         // Map commands to buttons
-//        CommandBase.oi.shiftButton.whenPressed(toggleShiftCommand);
-//        CommandBase.oi.rollInButton.whileHeld(rollInCommand);
-//        CommandBase.oi.rollOutButton.whileHeld(rollOutCommand);
+//        CommandBase.oi.shiftButton.whenPressed(new ShiftToInverted());
+//        CommandBase.oi.invertArcadeDriveButton.whenPressed(new InvertArcadeDrive());
+        
+//        CommandBase.oi.toggleIntakeExtensionButton.whenPressed(new InvertIntakeExtension());
         
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");
@@ -67,10 +66,12 @@ public class CK_17 extends IterativeRobot {
 
     public void teleopInit() {
 //        autonomousCommand.cancel(); // Make sure auton is finished
+        
 //        RobotMap.compressor.start(); // Start compressor
 //        initialShiftCommand.start();
 //        arcadeDriveCommand.start(); // Start teleop arcade drive
-        testLauncherCommand.start();
+//        rollerControlCommand.start();
+//        testLauncherCommand.start();
     }
 
     /**

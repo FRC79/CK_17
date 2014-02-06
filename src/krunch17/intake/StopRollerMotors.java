@@ -29,8 +29,7 @@ public class StopRollerMotors extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         try {
-            intake.rollerLeft.enableControl();
-            intake.rollerRight.enableControl();
+            intake.roller.enableControl();
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
@@ -53,8 +52,7 @@ public class StopRollerMotors extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
         try {
-            intake.rollerLeft.disableControl();
-            intake.rollerRight.disableControl();
+            intake.roller.disableControl();
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }

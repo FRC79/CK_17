@@ -30,9 +30,9 @@ public abstract class CommandBase extends Command {
         oi = new OI();
         
         // Show what command your subsystem is running on the SmartDashboard
-        drive = new Drivetrain();
+//        drive = new Drivetrain();
 //        intake = new Intake();
-        launcher = new Launcher();
+//        launcher = new Launcher();
     }
 
     public CommandBase(String name) {

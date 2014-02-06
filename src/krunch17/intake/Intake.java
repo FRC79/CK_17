@@ -24,9 +24,6 @@ public class Intake extends Subsystem {
     DoubleSolenoid piston;
 
     public static final double PISTON_DELAY = 0.50;
-    
-    CANJaguar rollerLeft, rollerRight;
-    DoubleSolenoid armA, armB;
 
     boolean isInverted, isExtended;
 
