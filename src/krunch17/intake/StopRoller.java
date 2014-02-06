@@ -12,15 +12,15 @@ import krunch17.CommandBase;
  *
  * @author kijan_000
  */
-public class StopRollerMotors extends CommandBase {
+public class StopRoller extends CommandBase {
     
     boolean isFinished, runsForever;
     
-    public StopRollerMotors(){
+    public StopRoller(){
         this(false);
     }
     
-    public StopRollerMotors(boolean runContinuously){
+    public StopRoller(boolean runContinuously){
         requires(intake);
         isFinished = false;
         runsForever = runContinuously;

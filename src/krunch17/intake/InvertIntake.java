@@ -6,17 +6,16 @@
 package krunch17.intake;
 
 import krunch17.CommandBase;
-import krunch17.RobotMap;
 
 /**
  *
  * @author kijan_000
  */
-public class InvertIntakeExtension extends CommandBase {
+public class InvertIntake extends CommandBase {
     
     private boolean isFinished;
     
-    public InvertIntakeExtension() {
+    public InvertIntake() {
         setTimeout(intake.PISTON_DELAY); // Wait time to finish task.
     }
 
