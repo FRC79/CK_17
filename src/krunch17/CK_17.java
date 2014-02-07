@@ -12,7 +12,7 @@ import krunch17.drivetrain.DriveStraight;
 import krunch17.drivetrain.InvertArcadeDrive;
 import krunch17.drivetrain.ShiftToHighGear;
 import krunch17.drivetrain.ShiftToInverted;
-import krunch17.intake.InvertIntakePiston;
+import krunch17.intake.InvertIntake;
 import krunch17.intake.RollerTeleop;
 import krunch17.launcher.TestLauncher;
 
@@ -44,7 +44,7 @@ public class CK_17 extends IterativeRobot {
 //        CommandBase.oi.shiftButton.whenPressed(new ShiftToInverted());
 //        CommandBase.oi.invertArcadeDriveButton.whenPressed(new InvertArcadeDrive());
         
-//        CommandBase.oi.toggleIntakeExtensionButton.whenPressed(new InvertIntakePiston());
+//        CommandBase.oi.toggleIntakeExtensionButton.whenPressed(new InvertIntake());
         
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");

@@ -11,11 +11,11 @@ import krunch17.CommandBase;
  *
  * @author kijan_000
  */
-public class InvertIntakePiston extends CommandBase {
+public class InvertIntake extends CommandBase {
     
     private boolean isFinished;
     
-    public InvertIntakePiston() {
+    public InvertIntake() {
         setTimeout(intake.PISTON_DELAY); // Wait time to finish task.
     }
 
