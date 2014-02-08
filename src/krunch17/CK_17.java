@@ -35,16 +35,16 @@ public class CK_17 extends IterativeRobot {
         
         // instantiate commands
 //        autonomousCommand = new DriveStraight();
-//        arcadeDriveCommand = new ArcadeDrive();
-//        initialShiftCommand = new ShiftToHighGear();
-//        rollerControlCommand = new RollerTeleop();
-//        testLauncherCommand = new TestLauncher();
+        arcadeDriveCommand = new ArcadeDrive();
+        initialShiftCommand = new ShiftToHighGear();
+        rollerControlCommand = new RollerTeleop();
+        testLauncherCommand = new TestLauncher();
         
         // Map commands to buttons
-//        CommandBase.oi.shiftButton.whenPressed(new ShiftToInverted());
-//        CommandBase.oi.invertArcadeDriveButton.whenPressed(new InvertArcadeDrive());
+        CommandBase.oi.shiftButton.whenPressed(new ShiftToInverted());
+        CommandBase.oi.invertArcadeDriveButton.whenPressed(new InvertArcadeDrive());
         
-//        CommandBase.oi.toggleIntakeExtensionButton.whenPressed(new InvertIntake());
+        CommandBase.oi.toggleIntakeExtensionButton.whenPressed(new InvertIntake());
         
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");
@@ -52,8 +52,8 @@ public class CK_17 extends IterativeRobot {
     }
 
     public void autonomousInit() {
-//        RobotMap.compressor.start(); // Start compressor
-//        initialShiftCommand.start();
+        RobotMap.compressor.start(); // Start compressor
+        initialShiftCommand.start();
 //        autonomousCommand.start(); // schedule the autonomous command
     }
 
@@ -67,11 +67,11 @@ public class CK_17 extends IterativeRobot {
     public void teleopInit() {
 //        autonomousCommand.cancel(); // Make sure auton is finished
         
-//        RobotMap.compressor.start(); // Start compressor
-//        initialShiftCommand.start();
-//        arcadeDriveCommand.start(); // Start teleop arcade drive
-//        rollerControlCommand.start();
-//        testLauncherCommand.start();
+        RobotMap.compressor.start(); // Start compressor
+        initialShiftCommand.start();
+        arcadeDriveCommand.start(); // Start teleop arcade drive
+        rollerControlCommand.start();
+        testLauncherCommand.start();
     }
 
     /**
@@ -84,7 +84,7 @@ public class CK_17 extends IterativeRobot {
     
     public void disabledInit() {
         Scheduler.getInstance().removeAll(); // Stop all commands
-//        RobotMap.compressor.stop(); // Stop compressor
+        RobotMap.compressor.stop(); // Stop compressor
     }
 
     public void testInit() {

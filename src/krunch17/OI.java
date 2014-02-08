@@ -21,14 +21,14 @@ public class OI {
         shooterGamepad = new Joystick(2);
         
         // Init joystick buttons
-//        shiftButton = new JoystickButton(driverJoystick, 7);
-//        invertArcadeDriveButton = new JoystickButton(driverJoystick, 8);
+        shiftButton = new JoystickButton(driverJoystick, 7);
+        invertArcadeDriveButton = new JoystickButton(driverJoystick, 8);
         
-//        toggleIntakeExtensionButton = new JoystickButton(shooterGamepad, 7);
+        toggleIntakeExtensionButton = new JoystickButton(shooterGamepad, 7);
     }
     
     public float getDPadAxisY(Joystick refJoystick){
-        double val = refJoystick.getRawAxis(6); // Get DPad axis
+        double val = refJoystick.getRawAxis(5); // Get DPad axis
     
         // Scale the input like binary buttons
         if(val > 0.5){

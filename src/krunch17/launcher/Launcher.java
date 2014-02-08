@@ -17,7 +17,7 @@ import krunch17.RobotMap;
  */
 public class Launcher extends Subsystem {
 
-    public static final double GEAR_RATIO = 16.5;
+    public static final double GEAR_RATIO = 42.22;
     public static final int TICS_PER_REV = (int)(250 * GEAR_RATIO);
     public static final double LAUNCH_DELAY = 0.50;
     
