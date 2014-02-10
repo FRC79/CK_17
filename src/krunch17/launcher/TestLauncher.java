@@ -36,27 +36,10 @@ public class TestLauncher extends CommandBase {
     protected void execute() {
         if(oi.getDriverJoystick().getRawButton(11)){
             launcher.setMotors(raisePower);
-            SmartDashboard.putBoolean("RAISE", true);
         } else if(oi.getDriverJoystick().getRawButton(10)){
             launcher.setMotors(lowerPower);
-            SmartDashboard.putBoolean("LOWER", true);
         } else {
             launcher.stop();
-            SmartDashboard.putBoolean("RAISE", false);
-            SmartDashboard.putBoolean("LOWER", false);
-        }
-        
-        if(launcher.isBottomStopPressed()){
-            SmartDashboard.putBoolean("BOTTOM", true);
-        } else {
-            SmartDashboard.putBoolean("BOTTOM", false);
-        }
-        
-        
-        if(launcher.isTopStopPressed()){
-            SmartDashboard.putBoolean("TOP", true);
-        } else {
-            SmartDashboard.putBoolean("TOP", false);
         }
         
         if(launcher.isBottomStopPressed()){

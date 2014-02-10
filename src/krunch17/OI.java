@@ -28,7 +28,7 @@ public class OI {
     }
     
     public float getDPadAxisY(Joystick refJoystick){
-        double val = refJoystick.getRawAxis(5); // Get DPad axis
+        double val = refJoystick.getRawAxis(2); // Get DPad axis
     
         // Scale the input like binary buttons
         if(val > 0.5){
