@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 
@@ -21,6 +22,7 @@ public class RobotMap {
     public static Compressor compressor;
     public static DoubleSolenoid sonicShifter, intakePiston;
     public static DigitalInput bottomStop, topStop;
+    public static Gyro turnGyro;
     
     public static void init(){
         loadComponents(true); // Used to init CSVs and all components
@@ -60,5 +62,8 @@ public class RobotMap {
         
         bottomStop = new DigitalInput(3);
         topStop = new DigitalInput(2);
+        
+        // Init gyroscope
+        turnGyro = new Gyro(1);
     }
 }
