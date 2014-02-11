@@ -22,6 +22,7 @@ public class Intake extends Subsystem {
     public static final double PISTON_DELAY = 0.50;
     
     boolean isInverted, isExtended;
+    boolean isLockedToExtend;
     
     CANJaguar roller;
     DoubleSolenoid piston;
@@ -32,6 +33,8 @@ public class Intake extends Subsystem {
         
         roller = RobotMap.rollerMotors;
         piston = RobotMap.intakePiston;
+        
+        isLockedToExtend = false;
         
         try {
             roller.changeControlMode(CANJaguar.ControlMode.kPercentVbus);
@@ -58,6 +61,10 @@ public class Intake extends Subsystem {
     }
     
     public void setPiston(boolean state) {
+        if(isLockedToExtend){
+            state = kExtended;
+        }
+        
         piston.set(state ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse);
     }
     
@@ -80,6 +87,14 @@ public class Intake extends Subsystem {
     
     public void invertPiston(){
         setPiston(!isExtended());
+    }
+    
+    public void setIsLockedToExtend(boolean state){
+        isLockedToExtend = state;
+    }
+    
+    public boolean getIsLockedToExtend(){
+        return isLockedToExtend;
     }
     
     public void initDefaultCommand() {

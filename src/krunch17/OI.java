@@ -12,7 +12,7 @@ public class OI {
     
     public Joystick driverJoystick, shooterGamepad;
     public JoystickButton shiftButton, invertArcadeDriveButton, 
-            toggleIntakeExtensionButton;
+            toggleIntakeExtensionButton, fireButton;
     
     public OI()
     {
@@ -25,6 +25,7 @@ public class OI {
         invertArcadeDriveButton = new JoystickButton(driverJoystick, 8);
         
         toggleIntakeExtensionButton = new JoystickButton(shooterGamepad, 5);
+        fireButton = new JoystickButton(shooterGamepad, 6);
     }
     
     public float getDPadAxisY(Joystick refJoystick){

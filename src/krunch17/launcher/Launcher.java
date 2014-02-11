@@ -21,6 +21,9 @@ public class Launcher extends Subsystem {
     public static final int TICS_PER_REV = (int)(250 * GEAR_RATIO);
     public static final double LAUNCH_DELAY = 0.50;
     
+    public static final float LOWER_POWER = -0.5f;
+    public static final float RAISE_POWER = 1.0f;
+    
     private double encoderOffset;
     
     CANJaguar motorL, motorR;
@@ -112,6 +115,6 @@ public class Launcher extends Subsystem {
     }
     
     public void initDefaultCommand() {
-//        setDefaultCommand(new StoreLauncher());
+        setDefaultCommand(new StowLauncher());
     }
 }
