@@ -6,7 +6,12 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import krunch17.autonomous.DoNothing;
+import krunch17.autonomous.DriveThenHotShot;
+import krunch17.autonomous.SimpleDrive;
+import krunch17.autonomous.SimpleDriveThenShot;
 import krunch17.drivetrain.ArcadeDrive;
 import krunch17.drivetrain.DriveStraight;
 import krunch17.drivetrain.InvertArcadeDrive;
@@ -26,6 +31,7 @@ import krunch17.launcher.TestLauncher;
  */
 public class CK_17 extends IterativeRobot {
 
+    SendableChooser autoChooser;
     Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
             testLauncherCommand, rollerControlCommand;
 
@@ -34,8 +40,14 @@ public class CK_17 extends IterativeRobot {
         RobotMap.init();
         CommandBase.init();
         
+        // Init autonomous modes (And send to dashboard selector)
+        autoChooser = new SendableChooser();
+        autoChooser.addDefault("Simple Drive", new SimpleDrive());
+        autoChooser.addObject("Simple Drive Then Shot", new SimpleDriveThenShot());
+        autoChooser.addObject("Drive Then Hot Shot", new DriveThenHotShot());
+        autoChooser.addObject("Do Nothing", new DoNothing());
+        
         // instantiate commands
-//        autonomousCommand = new DriveStraight();
         arcadeDriveCommand = new ArcadeDrive();
         initialShiftCommand = new ShiftToHighGear();
         rollerControlCommand = new RollerTeleop();
