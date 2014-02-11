@@ -16,7 +16,7 @@ import krunch17.CommandBase;
  */
 public class DriveStraight extends CommandBase {
     
-    public DriveStraight() {
+    public DriveStraight(double distanceInInches) {
         requires(drive);
     }
 
