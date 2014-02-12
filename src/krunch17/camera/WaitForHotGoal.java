@@ -23,7 +23,7 @@ public class WaitForHotGoal extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         // Wait 5 seconds for the switch if the goal isn't hot yet
-        if(SmartDashboard.getBoolean("HOT GOAL EXISTS") == false){
+        if(SmartDashboard.getBoolean("GOAL FOUND") == false){
             setTimeout(switchTime);
         } else {
             // Goal is hot, automatically proceed
