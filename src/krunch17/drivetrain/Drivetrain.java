@@ -89,7 +89,7 @@ public class Drivetrain extends Subsystem {
     
     public void arcadeDrive(float moveVal, float rotVal){
         float invMoveVal = (driveControlsInverted) ? -moveVal : moveVal;
-        robotDrive.arcadeDrive(invMoveVal, rotVal);
+        robotDrive.arcadeDrive(invMoveVal, rotVal, true); // Decrease sensitivity when true
     }
     
     public void setLandR(float powerLeft, float powerRight){

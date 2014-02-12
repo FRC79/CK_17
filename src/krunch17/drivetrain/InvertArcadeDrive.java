@@ -14,7 +14,6 @@ import krunch17.CommandBase;
 public class InvertArcadeDrive extends CommandBase {
     
     public InvertArcadeDrive() {
-        requires(drive);
     }
 
     // Called just before this Command runs the first time

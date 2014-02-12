@@ -29,7 +29,7 @@ public class RollerTeleop extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        float power = CommandBase.oi.getDPadAxisY(CommandBase.oi.getManipGamepad()) * 1.0f; // Scaling factor
+        float power = CommandBase.oi.getDPadAxisY(CommandBase.oi.getManipGamepad()) * -1.0f; // Scaling factor
         
         intake.setRoller(power);
     }

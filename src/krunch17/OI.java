@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
     
     public Joystick driverJoystick, shooterGamepad;
-    public JoystickButton shiftButton, invertArcadeDriveButton, 
+    public JoystickButton shiftButton, invertArcadeDriveButton,
             toggleIntakeExtensionButton, fireButton;
     
     public OI()

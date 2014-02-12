@@ -7,13 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import krunch17.autonomous.DoNothing;
 import krunch17.autonomous.DriveThenHotShot;
 import krunch17.autonomous.SimpleDrive;
 import krunch17.autonomous.SimpleDriveThenShot;
 import krunch17.drivetrain.ArcadeDrive;
-import krunch17.drivetrain.DriveStraight;
 import krunch17.drivetrain.InvertArcadeDrive;
 import krunch17.drivetrain.ShiftToHighGear;
 import krunch17.drivetrain.ShiftToInverted;
@@ -85,7 +83,7 @@ public class CK_17 extends IterativeRobot {
         initialShiftCommand.start();
         arcadeDriveCommand.start(); // Start teleop arcade drive
         rollerControlCommand.start();
-        testLauncherCommand.start();
+//        testLauncherCommand.start();
     }
 
     /**
