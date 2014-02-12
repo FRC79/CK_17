@@ -50,9 +50,9 @@ public class DoNothing extends CommandBase {
         Timer.delay(0.25);
         System.out.print("the ");
         Timer.delay(0.125);
-        System.out.print("wind ");
+        System.out.print("match ");
         Timer.delay(0.25);
-        System.out.print("blows.\n");
+        System.out.print("goes.\n");
     }
 
     // Make this return true when this Command no longer needs to run execute()
