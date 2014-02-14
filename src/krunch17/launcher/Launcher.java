@@ -24,6 +24,8 @@ public class Launcher extends Subsystem {
     public static final float LOWER_POWER = -0.5f;
     public static final float RAISE_POWER = 1.0f;
     
+    public static final double ENCODER_LIMIT = -6.0;
+    
     private double encoderOffset;
     
     CANJaguar motorL, motorR;
@@ -58,7 +60,7 @@ public class Launcher extends Subsystem {
             power = 0.0f;
         }
         
-        if(isTopStopPressed() && power > 0.0f){
+        if((isTopStopPressed() || encoderLimitReached()) && power > 0.0f){
             power = 0.0f;
         }
         
@@ -112,6 +114,10 @@ public class Launcher extends Subsystem {
     
     public boolean isTopStopPressed(){
         return topStop.get();
+    }
+    
+    boolean encoderLimitReached() {
+        return (getAngle() <= ENCODER_LIMIT);
     }
     
     public void initDefaultCommand() {

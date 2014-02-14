@@ -21,12 +21,14 @@ public class Drivetrain extends Subsystem {
     static final boolean kHigh_Gear = false;
     static final boolean kLow_Gear = true;
     
-    public static final int TICS_PER_REV = 250; // DOESN'T TAKE INTO ACCOUNT LOW OR HIGH GEARING
+    public static final double GEAR_RATIO = 0.8;
+    public static final int TICS_PER_REV = (int)(250.0 * GEAR_RATIO);
     public static final double CIRCUMFERENCE = 4.0 * Math.PI; // Inches
     
     private boolean driveControlsInverted;
     private boolean shiftState;
     private double leftEncoderOffset, rightEncoderOffset;
+    private double angleOffset;
 
     
     CANJaguar leftF, rightF, leftR, rightR;
@@ -104,7 +106,13 @@ public class Drivetrain extends Subsystem {
         set(0.0f);
     }
     
+    public double getAngle(){
+        return turnGyro.getAngle() - angleOffset;
+    }
     
+    public void resetGyro(){
+        angleOffset += (turnGyro.getAngle() - angleOffset);
+    }
     
     public double getAvgRevs(){
           try {

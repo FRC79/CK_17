@@ -3,10 +3,12 @@ package krunch17;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.NamedSendable;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import krunch17.autonomous.DoNothing;
 import krunch17.autonomous.DriveThenHotShot;
 import krunch17.autonomous.SimpleDrive;
@@ -44,6 +46,7 @@ public class CK_17 extends IterativeRobot {
         autoChooser.addObject("Simple Drive Then Shot", new SimpleDriveThenShot());
         autoChooser.addObject("Drive Then Hot Shot", new DriveThenHotShot());
         autoChooser.addObject("Do Nothing", new DoNothing());
+        SmartDashboard.putData("Choose an autonomous mode", autoChooser);
         
         // instantiate commands
         arcadeDriveCommand = new ArcadeDrive();
@@ -58,6 +61,9 @@ public class CK_17 extends IterativeRobot {
         CommandBase.oi.toggleIntakeExtensionButton.whenPressed(new InvertIntake());
         CommandBase.oi.fireButton.whenPressed(new FireLauncher());
         
+        // Reset gyro
+        RobotMap.turnGyro.reset(); // Takes like 5 seconds
+        
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");
         System.out.println("--------------------------------------");
@@ -66,7 +72,8 @@ public class CK_17 extends IterativeRobot {
     public void autonomousInit() {
         RobotMap.compressor.start(); // Start compressor
         initialShiftCommand.start();
-//        autonomousCommand.start(); // schedule the autonomous command
+        autonomousCommand = (Command)autoChooser.getSelected();
+        autonomousCommand.start(); // schedule the autonomous command
     }
 
     /**
@@ -77,13 +84,12 @@ public class CK_17 extends IterativeRobot {
     }
 
     public void teleopInit() {
-//        autonomousCommand.cancel(); // Make sure auton is finished
+        autonomousCommand.cancel(); // Make sure auton is finished
         
         RobotMap.compressor.start(); // Start compressor
         initialShiftCommand.start();
         arcadeDriveCommand.start(); // Start teleop arcade drive
         rollerControlCommand.start();
-//        testLauncherCommand.start();
     }
 
     /**

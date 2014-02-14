@@ -15,6 +15,6 @@ import krunch17.drivetrain.DriveStraight;
 public class SimpleDrive extends CommandGroup {
     
     public SimpleDrive() {
-        addSequential(new DriveStraight(4.5 * 12)); // Drive for 4.5 feet 
+        addSequential(new DriveStraight(7 * 12)); // Drive for 4.5 feet 
     }
 }

@@ -42,17 +42,11 @@ public class TestLauncher extends CommandBase {
             launcher.stop();
         }
         
-        if(launcher.isBottomStopPressed()){
-            launcher.resetEncoder();
-            launcher.stop();
-        }
+//        SmartDashboard.putBoolean("TOP SWITCH", launcher.isTopStopPressed());
+//        SmartDashboard.putBoolean("BOTTOM SWITCH", launcher.isBottomStopPressed());
         
-        if(launcher.isTopStopPressed()){
-            launcher.stop();
-        }
-        
-        SmartDashboard.putNumber("REVS", launcher.getRevs());
-        SmartDashboard.putNumber("ANGLE", launcher.getAngle());
+//        SmartDashboard.putNumber("REVS", launcher.getRevs());
+//        SmartDashboard.putNumber("ANGLE", launcher.getAngle());
     }
 
     // Make this return true when this Command no longer needs to run execute()

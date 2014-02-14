@@ -25,14 +25,15 @@ public class DriveStraight extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         drive.resetEncoders();
-        drive.turnGyro.reset(); // May need to put this in Drivetrain constructor
+//        drive.resetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        double angle = drive.turnGyro.getAngle(); // get current heading
-        drive.setWithCurve(1.0, -angle*kP); // Proporional compensation
-        Timer.delay(400 / 1000);
+//        double angle = drive.getAngle(); // get current heading
+//        drive.setWithCurve(1.0, -angle*kP); // Proporional compensation
+//        Timer.delay(400 / 1000);
+        drive.set(1.0f);
     }
 
     // Make this return true when this Command no longer needs to run execute()

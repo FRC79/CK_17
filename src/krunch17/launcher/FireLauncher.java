@@ -30,7 +30,7 @@ public class FireLauncher extends CommandBase {
     protected void execute() {
         if(!initiallyCanceled){
             
-            if(!launcher.isTopStopPressed() /*&& !launcher.encoderStopReached()*/){
+            if(!launcher.isTopStopPressed() && !launcher.encoderLimitReached()){
                 launcher.setMotors(launcher.RAISE_POWER);
             } else {
                 launcher.stop();
