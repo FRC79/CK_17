@@ -17,7 +17,6 @@ public class ExtendIntake extends CommandBase {
     private boolean isFinished;
     
     public ExtendIntake() {
-        setTimeout(intake.PISTON_DELAY);  // Wait time to finish task.
     }
 
     // Called just before this Command runs the first time
@@ -35,7 +34,7 @@ public class ExtendIntake extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();    // Finish the task once the delay is finished
+        return isFinished;    // Finish the task once the delay is finished
     }
 
     // Called once after isFinished returns true

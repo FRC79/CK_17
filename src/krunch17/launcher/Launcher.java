@@ -20,11 +20,12 @@ public class Launcher extends Subsystem {
     public static final double GEAR_RATIO = 42.22;
     public static final int TICS_PER_REV = (int)(250 * GEAR_RATIO);
     public static final double LAUNCH_DELAY = 0.50;
+    public static final double FIRING_DELAY = 1.0;
     
     public static final float LOWER_POWER = -0.5f;
     public static final float RAISE_POWER = 1.0f;
     
-    public static final double ENCODER_LIMIT = -6.0;
+    public static final double ENCODER_LIMIT = 0.25;// 4.5;
     
     private double encoderOffset;
     
@@ -117,7 +118,7 @@ public class Launcher extends Subsystem {
     }
     
     boolean encoderLimitReached() {
-        return (getAngle() <= ENCODER_LIMIT);
+        return (getAngle() >= ENCODER_LIMIT);
     }
     
     public void initDefaultCommand() {

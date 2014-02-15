@@ -37,7 +37,7 @@ public class RollOut extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        intake.setRoller(-1.0f);
+        intake.setRoller(1.0f);
         
         if(!runsForever){
             isFinished = true;

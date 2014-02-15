@@ -10,7 +10,6 @@ import krunch17.camera.WaitForHotGoal;
 import krunch17.drivetrain.DriveStraight;
 import krunch17.intake.ExtendIntake;
 import krunch17.launcher.FireLauncher;
-import krunch17.launcher.Launcher;
 import krunch17.util.Wait;
 
 /**

@@ -32,12 +32,16 @@ public class FireLauncher extends CommandBase {
         if(!initiallyCanceled){
             
             if(!launcher.isTopStopPressed() && !launcher.encoderLimitReached()){
-                intake.extendPiston(); // Extend it out of the way
                 intake.setIsLockedToExtend(true); // Get intake out of the way
-                Timer.delay(intake.PISTON_DELAY);
+                if(!intake.isExtended()){
+                    intake.extendPiston(); // Extend it out of the way
+//                    Timer.delay(intake.PISTON_DELAY);
+                    intake.setExtendedStateVariable(intake.kExtended);
+                }
                 launcher.setMotors(launcher.RAISE_POWER);
             } else {
                 launcher.stop();
+                Timer.delay(launcher.FIRING_DELAY);
                 isFinished = true;
             }
             

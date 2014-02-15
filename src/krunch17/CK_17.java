@@ -84,7 +84,12 @@ public class CK_17 extends IterativeRobot {
     }
 
     public void teleopInit() {
-        autonomousCommand.cancel(); // Make sure auton is finished
+        // Try catch just in case auton isn't set yet
+        try {
+            autonomousCommand.cancel(); // Make sure auton is finished
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
         
         RobotMap.compressor.start(); // Start compressor
         initialShiftCommand.start();

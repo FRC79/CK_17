@@ -13,8 +13,8 @@ import krunch17.CommandBase;
  * @author kijan_000
  */
 public class RollIn extends CommandBase {
-    
-    boolean isFinished, runsForever;
+
+    boolean runsForever, isFinished;
     
     public RollIn(){
         this(false);
@@ -23,7 +23,6 @@ public class RollIn extends CommandBase {
     public RollIn(boolean runContinuously) {
         requires(intake);
         runsForever = runContinuously;
-        isFinished = false;
     }
 
     // Called just before this Command runs the first time
@@ -33,11 +32,12 @@ public class RollIn extends CommandBase {
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
+        isFinished = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        intake.setRoller(1.0f);
+        intake.setRoller(-1.0f);
         
         if(!runsForever){
             isFinished = true;
