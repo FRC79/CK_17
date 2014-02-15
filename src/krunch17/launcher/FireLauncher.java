@@ -5,6 +5,7 @@
  */
 package krunch17.launcher;
 
+import edu.wpi.first.wpilibj.Timer;
 import krunch17.CommandBase;
 
 /**
@@ -31,6 +32,9 @@ public class FireLauncher extends CommandBase {
         if(!initiallyCanceled){
             
             if(!launcher.isTopStopPressed() && !launcher.encoderLimitReached()){
+                intake.extendPiston(); // Extend it out of the way
+                intake.setIsLockedToExtend(true); // Get intake out of the way
+                Timer.delay(intake.PISTON_DELAY);
                 launcher.setMotors(launcher.RAISE_POWER);
             } else {
                 launcher.stop();

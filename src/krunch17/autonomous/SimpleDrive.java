@@ -15,6 +15,7 @@ import krunch17.drivetrain.DriveStraight;
 public class SimpleDrive extends CommandGroup {
     
     public SimpleDrive() {
+        // Maybe wait a bit for the pneumatics to kick in
         addSequential(new DriveStraight(7 * 12)); // Drive for 4.5 feet 
     }
 }

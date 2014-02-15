@@ -19,7 +19,7 @@ public class Intake extends Subsystem {
 
     public static final boolean kExtended = true;
     public static final boolean kRetracted = false;
-    public static final double PISTON_DELAY = 0.50;
+    public static final double PISTON_DELAY = 1.00;
     
     boolean isInverted, isExtended;
     boolean isLockedToExtend;
