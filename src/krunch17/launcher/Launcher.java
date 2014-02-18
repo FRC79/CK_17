@@ -25,7 +25,7 @@ public class Launcher extends Subsystem {
     public static final float LOWER_POWER = -0.5f;
     public static final float RAISE_POWER = 1.0f;
     
-    public static final double ENCODER_LIMIT = 0.25;// 4.5;
+    public static final double ENCODER_LIMIT = 0.4;
     
     private double encoderOffset;
     
@@ -118,7 +118,8 @@ public class Launcher extends Subsystem {
     }
     
     boolean encoderLimitReached() {
-        return (getAngle() >= ENCODER_LIMIT);
+//        return (getAngle() >= ENCODER_LIMIT);
+        return false;
     }
     
     public void initDefaultCommand() {

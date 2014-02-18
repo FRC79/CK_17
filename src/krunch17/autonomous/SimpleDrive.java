@@ -7,6 +7,7 @@ package krunch17.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import krunch17.drivetrain.DriveStraight;
+import krunch17.util.Wait;
 
 /**
  *
@@ -16,6 +17,6 @@ public class SimpleDrive extends CommandGroup {
     
     public SimpleDrive() {
         // Maybe wait a bit for the pneumatics to kick in
-        addSequential(new DriveStraight(6 * 12)); // Drive for 4.5 feet 
+        addSequential(new DriveStraight(1.0)); // Drive for time
     }
 }

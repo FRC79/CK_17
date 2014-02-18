@@ -27,7 +27,7 @@ public class Drivetrain extends Subsystem {
     
     private boolean driveControlsInverted;
     private boolean shiftState;
-    private double leftEncoderOffset, rightEncoderOffset;
+    private double encoderOffset;
     private double angleOffset;
 
     
@@ -69,6 +69,8 @@ public class Drivetrain extends Subsystem {
         
         // Init turn gyro
         turnGyro = RobotMap.turnGyro;
+        
+        encoderOffset = 0.0;
     }
     
     
@@ -90,7 +92,7 @@ public class Drivetrain extends Subsystem {
     }
     
     public void arcadeDrive(float moveVal, float rotVal){
-        float invMoveVal = (driveControlsInverted) ? -moveVal : moveVal;
+        float invMoveVal = (!driveControlsInverted) ? -moveVal : moveVal;
         robotDrive.arcadeDrive(invMoveVal, rotVal, true); // Decrease sensitivity when true
     }
     
@@ -116,9 +118,9 @@ public class Drivetrain extends Subsystem {
     
     public double getAvgRevs(){
           try {
-              double revsLeft = Math.abs(leftF.getPosition()) - leftEncoderOffset;
-              double revsRight = Math.abs(rightF.getPosition()) - rightEncoderOffset;
-              return (revsLeft + revsRight) / 2;
+              double revsLeft = Math.abs(leftF.getPosition());
+              double revsRight = Math.abs(rightF.getPosition());
+              return ((revsLeft + revsRight) / 2) - encoderOffset;
           } catch (CANTimeoutException ex) {
               ex.printStackTrace();
               return 0.0;
@@ -126,12 +128,7 @@ public class Drivetrain extends Subsystem {
      }
       
      public void resetEncoders(){
-          try {
-              leftEncoderOffset += Math.abs(leftF.getPosition()) - leftEncoderOffset;
-              rightEncoderOffset += Math.abs(rightF.getPosition()) - rightEncoderOffset;
-          } catch (CANTimeoutException ex) {
-              ex.printStackTrace();
-          }
+           encoderOffset += getAvgRevs();
       }
       
      public static double distanceToRevs(double distanceInInches){

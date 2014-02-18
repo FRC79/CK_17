@@ -18,6 +18,7 @@ import krunch17.drivetrain.InvertArcadeDrive;
 import krunch17.drivetrain.ShiftToHighGear;
 import krunch17.drivetrain.ShiftToInverted;
 import krunch17.intake.InvertIntake;
+import krunch17.intake.RetractIntake;
 import krunch17.intake.RollerTeleop;
 import krunch17.launcher.FireLauncher;
 import krunch17.launcher.TestLauncher;
@@ -33,7 +34,7 @@ public class CK_17 extends IterativeRobot {
 
     SendableChooser autoChooser;
     Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
-            testLauncherCommand, rollerControlCommand;
+            testLauncherCommand, rollerControlCommand, initialRetractCommand;
 
     public void robotInit() {
         // Initialize all subsystems
@@ -53,6 +54,7 @@ public class CK_17 extends IterativeRobot {
         initialShiftCommand = new ShiftToHighGear();
         rollerControlCommand = new RollerTeleop();
         testLauncherCommand = new TestLauncher();
+        initialRetractCommand = new RetractIntake();
         
         // Map commands to buttons
         CommandBase.oi.shiftButton.whenPressed(new ShiftToInverted());
@@ -74,6 +76,7 @@ public class CK_17 extends IterativeRobot {
         initialShiftCommand.start();
         autonomousCommand = (Command)autoChooser.getSelected();
         autonomousCommand.start(); // schedule the autonomous command
+        initialRetractCommand.start();
     }
 
     /**
@@ -81,6 +84,7 @@ public class CK_17 extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("ENC", CommandBase.drive.getAvgRevs());
     }
 
     public void teleopInit() {
@@ -95,6 +99,7 @@ public class CK_17 extends IterativeRobot {
         initialShiftCommand.start();
         arcadeDriveCommand.start(); // Start teleop arcade drive
         rollerControlCommand.start();
+        initialRetractCommand.start();
     }
 
     /**
@@ -102,6 +107,7 @@ public class CK_17 extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("ENC", CommandBase.drive.getAvgRevs());
     }
 
     

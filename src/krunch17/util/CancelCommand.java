@@ -3,42 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package krunch17.launcher;
+package krunch17.util;
 
+import edu.wpi.first.wpilibj.command.Command;
 import krunch17.CommandBase;
 
 /**
  *
  * @author Sebastian
  */
-public class StowLauncher extends CommandBase {
+public class CancelCommand extends CommandBase {
     
-    public StowLauncher() {
-        requires(launcher);
+    Command command;
+    
+    public CancelCommand(Command command) {
+        this.command = command;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        launcher.enableControl();
+        command.cancel();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        // If the bottom stop is pressed, stop the motors and reset encoder
-        if(launcher.isBottomStopPressed()){
-            launcher.resetEncoder();
-            launcher.stop();
-            intake.setIsLockedToExtend(false); // Let intake move again
-        } else {
-            launcher.setMotors(launcher.LOWER_POWER);
-//            intake.extendPiston(); // Extend it out of the way
-            intake.setIsLockedToExtend(true); // Get intake out of the way
-        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

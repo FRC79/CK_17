@@ -17,14 +17,16 @@ public class DriveStraight extends CommandBase {
     double revs;
     double kP = 0.03;
     
-    public DriveStraight(double distanceInInches) {
+    public DriveStraight(double time) {
         requires(drive);
-        revs = Drivetrain.distanceToRevs(distanceInInches);
+        setTimeout(time);
+//        revs = Drivetrain.distanceToRevs(distanceInInches);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
         drive.resetEncoders();
+        
 //        drive.resetGyro();
     }
 
@@ -38,12 +40,20 @@ public class DriveStraight extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (drive.getAvgRevs() >= revs); // Finish when we get there
+        return isTimedOut();//(drive.getAvgRevs() >= revs); // Finish when we get there
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        drive.set(0.75f);
+        System.out.println("STOPPING");
+        Timer.delay(0.125);
+        drive.set(0.5f);
+        Timer.delay(0.125);
+        drive.setLandR(0.25f, 0.5f);
+        Timer.delay(0.125);
         drive.stop();
+        System.out.println("STOPPED");
     }
 
     // Called when another command which requires one or more of the same

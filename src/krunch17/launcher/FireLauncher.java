@@ -41,7 +41,7 @@ public class FireLauncher extends CommandBase {
                 launcher.setMotors(launcher.RAISE_POWER);
             } else {
                 launcher.stop();
-                Timer.delay(launcher.FIRING_DELAY);
+//                Timer.delay(launcher.FIRING_DELAY);
                 isFinished = true;
             }
             

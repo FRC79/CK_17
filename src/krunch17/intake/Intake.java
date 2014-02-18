@@ -66,6 +66,10 @@ public class Intake extends Subsystem {
         }
         
         piston.set(state ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse);
+    
+        System.out.println("-----------------------------------------");
+        System.out.println("SETTING PISTON TO A DIFFERENT THING");
+        System.out.println("-----------------------------------------");
     }
     
     // Sets the state variable after delay has happened
