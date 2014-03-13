@@ -66,6 +66,8 @@ public class CK_17 extends IterativeRobot {
         // Reset gyro
         RobotMap.turnGyro.reset(); // Takes like 5 seconds
         
+        SmartDashboard.putNumber("RAISE_POWER", CommandBase.launcher.RAISE_POWER);
+        
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");
         System.out.println("--------------------------------------");
@@ -100,6 +102,8 @@ public class CK_17 extends IterativeRobot {
         arcadeDriveCommand.start(); // Start teleop arcade drive
         rollerControlCommand.start();
         initialRetractCommand.start();
+        
+        CommandBase.launcher.RAISE_POWER = (float) SmartDashboard.getNumber("RAISE_POWER");
     }
 
     /**
