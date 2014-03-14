@@ -90,7 +90,7 @@ public class CK_17 extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("ENC", CommandBase.drive.getAvgRevs());
+//        SmartDashboard.putNumber("ENC", CommandBase.drive.getAvgRevs());
     }
 
     public void teleopInit() {
@@ -115,7 +115,7 @@ public class CK_17 extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("ENC", CommandBase.drive.getAvgRevs());
+//        SmartDashboard.putNumber("ENC", CommandBase.drive.getAvgRevs());
     }
 
     
