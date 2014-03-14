@@ -21,6 +21,7 @@ import krunch17.intake.InvertIntake;
 import krunch17.intake.RetractIntake;
 import krunch17.intake.RollerTeleop;
 import krunch17.launcher.FireLauncher;
+import krunch17.launcher.FireLauncherAutomated;
 import krunch17.launcher.TestLauncher;
 
 /**
@@ -61,7 +62,8 @@ public class CK_17 extends IterativeRobot {
         CommandBase.oi.invertArcadeDriveButton.whenPressed(new InvertArcadeDrive());
         
         CommandBase.oi.toggleIntakeExtensionButton.whenPressed(new InvertIntake());
-        CommandBase.oi.fireButton.whenPressed(new FireLauncher());
+//        CommandBase.oi.fireButton.whenPressed(new FireLauncher());
+        CommandBase.oi.fireButton.whenPressed(new FireLauncherAutomated());
         
         // Reset gyro
         RobotMap.turnGyro.reset(); // Takes like 5 seconds
