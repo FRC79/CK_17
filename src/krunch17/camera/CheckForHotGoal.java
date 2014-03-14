@@ -12,23 +12,17 @@ import krunch17.CommandBase;
  *
  * @author Sebastian
  */
-public class WaitForHotGoal extends CommandBase {
-
-    double switchTime;
+public class CheckForHotGoal extends CommandBase {
     
-    public WaitForHotGoal(double switchTime) {
-        this.switchTime = switchTime;
+    public static boolean initiallyHot;
+    
+    public CheckForHotGoal() {
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        // Wait 5 seconds for the switch if the goal isn't hot yet
-        if(CheckForHotGoal.initiallyHot){
-            setTimeout(0.0);
-        } else {
-            // Goal is hot, automatically proceed
-            setTimeout(switchTime);
-        }
+        initiallyHot = true;
+        initiallyHot = SmartDashboard.getBoolean("GOAL FOUND");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -37,7 +31,7 @@ public class WaitForHotGoal extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return true;
     }
 
     // Called once after isFinished returns true
