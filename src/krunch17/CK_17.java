@@ -35,7 +35,8 @@ public class CK_17 extends IterativeRobot {
 
     SendableChooser autoChooser;
     Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
-            testLauncherCommand, rollerControlCommand, initialRetractCommand;
+            testLauncherCommand, rollerControlCommand, initialRetractCommand,
+            fireAutomatedCommand;
 
     public void robotInit() {
         // Initialize all subsystems
@@ -56,14 +57,15 @@ public class CK_17 extends IterativeRobot {
         rollerControlCommand = new RollerTeleop();
         testLauncherCommand = new TestLauncher();
         initialRetractCommand = new RetractIntake();
+        fireAutomatedCommand = new FireLauncherAutomated();
         
         // Map commands to buttons
         CommandBase.oi.shiftButton.whenPressed(new ShiftToInverted());
         CommandBase.oi.invertArcadeDriveButton.whenPressed(new InvertArcadeDrive());
         
         CommandBase.oi.toggleIntakeExtensionButton.whenPressed(new InvertIntake());
-//        CommandBase.oi.fireButton.whenPressed(new FireLauncher());
-        CommandBase.oi.fireButton.whenPressed(new FireLauncherAutomated());
+        CommandBase.oi.fireButton.whenPressed(fireAutomatedCommand);
+        CommandBase.oi.cancelFireButton.cancelWhenPressed(fireAutomatedCommand);
         
         // Reset gyro
         RobotMap.turnGyro.reset(); // Takes like 5 seconds
