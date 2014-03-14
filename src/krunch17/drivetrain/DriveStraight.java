@@ -26,7 +26,7 @@ public class DriveStraight extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         drive.resetEncoders();
-        
+        drive.setDriveControlsInverted(false);
 //        drive.resetGyro();
     }
 

@@ -20,7 +20,7 @@ public class FireLauncherAutomated extends CommandGroup {
     public FireLauncherAutomated() {
         addSequential(new Wait(0.004));
         addSequential(new ExtendIntake());
-        addSequential(new Wait(0.5));
+        addSequential(new Wait(0.5 + 0.5));
         addSequential(new FireLauncher()); // Launcher will retract after fire
     }
 }
