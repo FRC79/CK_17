@@ -29,6 +29,7 @@ public class Drivetrain extends Subsystem {
     private boolean shiftState;
     private double encoderOffset;
     private double angleOffset;
+    public static boolean TELEOP_CONTROL_DISABLED = false;
 
     
     CANJaguar leftF, rightF, leftR, rightR;
@@ -92,6 +93,11 @@ public class Drivetrain extends Subsystem {
     }
     
     public void arcadeDrive(float moveVal, float rotVal){
+        if(TELEOP_CONTROL_DISABLED){
+            moveVal = 0f;
+            rotVal = 0f;
+        }
+        
         float invMoveVal = (!driveControlsInverted) ? -moveVal : moveVal;
         robotDrive.arcadeDrive(invMoveVal, rotVal, true); // Decrease sensitivity when true
     }
