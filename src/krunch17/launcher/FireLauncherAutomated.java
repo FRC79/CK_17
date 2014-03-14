@@ -18,12 +18,9 @@ import krunch17.util.Wait;
 public class FireLauncherAutomated extends CommandGroup {
     
     public FireLauncherAutomated() {
-        addSequential(new RollIn());
-        addSequential(new Wait(0.25));
-        addSequential(new StopRoller());
         addSequential(new Wait(0.004));
         addSequential(new ExtendIntake());
-        addSequential(new Wait(1.0));
+        addSequential(new Wait(0.5));
         addSequential(new FireLauncher()); // Launcher will retract after fire
     }
 }
