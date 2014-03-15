@@ -45,9 +45,9 @@ public class CK_17 extends IterativeRobot {
         
         // Init autonomous modes (And send to dashboard selector)
         autoChooser = new SendableChooser();
-        autoChooser.addDefault("Simple Drive", new SimpleDrive());
+        autoChooser.addObject("Simple Drive", new SimpleDrive());
         autoChooser.addObject("Simple Drive Then Shot", new SimpleDriveThenShot());
-        autoChooser.addObject("Drive Then Hot Shot", new DriveThenHotShot());
+        autoChooser.addDefault("Drive Then Hot Shot", new DriveThenHotShot());
         autoChooser.addObject("Do Nothing", new DoNothing());
         SmartDashboard.putData("Choose an autonomous mode", autoChooser);
         

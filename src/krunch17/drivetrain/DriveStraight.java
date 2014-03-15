@@ -50,8 +50,8 @@ public class DriveStraight extends CommandBase {
         Timer.delay(0.125);
         drive.set(0.5f);
         Timer.delay(0.125);
-//        drive.setLandR(0.25f, 0.5f);
-        drive.set(0.25f);
+        drive.setLandR(0.25f, 0.5f);
+//        drive.set(0.25f);
         Timer.delay(0.125);
         drive.stop();
         System.out.println("STOPPED");

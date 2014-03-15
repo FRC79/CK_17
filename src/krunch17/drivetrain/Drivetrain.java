@@ -74,7 +74,13 @@ public class Drivetrain extends Subsystem {
     }
     
     
-    
+    private float onlyPos(float num){
+        if(num < 0.0f){
+            return 0.0f;
+        } else {
+            return num;
+        }
+    }
     
     public boolean areDriveControlsInverted(){
         return driveControlsInverted;
@@ -97,7 +103,7 @@ public class Drivetrain extends Subsystem {
     }
     
     public void setLandR(float powerLeft, float powerRight){
-        robotDrive.setLeftRightMotorOutputs(powerLeft, powerRight);
+        robotDrive.setLeftRightMotorOutputs(powerLeft, onlyPos(powerRight - 0.05f));
     }
     
     public void set(float power){
