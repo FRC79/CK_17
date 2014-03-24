@@ -21,14 +21,14 @@ public class SimpleDriveThenShot extends CommandGroup {
     
     public SimpleDriveThenShot() {
 //        Command rollCommand = new RollIn();
-        addSequential(new DriveStraight(1.0)); // Drive for time
-        addSequential(new Wait(0.5)); // Wait to stop completely
+        addSequential(new DriveStraight(AutonSettings.DRIVE_TIME)); // Drive for time
+        addSequential(new Wait(AutonSettings.DECEL_TIME)); // Wait to stop completely
         addSequential(new RollIn());
-        addSequential(new Wait(0.25));
+        addSequential(new Wait(AutonSettings.ROLL_IN_TIME));
         addSequential(new StopRoller());
         addSequential(new Wait(0.004));
         addSequential(new ExtendIntake());
-        addSequential(new Wait(0.5 + 0.5));
+        addSequential(new Wait(AutonSettings.EXTEND_INTAKE_DELAY + AutonSettings.FIRE_DELAY));
         addSequential(new FireLauncher()); // Launcher will retract after fire
     }
 }
