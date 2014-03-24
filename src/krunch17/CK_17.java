@@ -64,7 +64,8 @@ public class CK_17 extends IterativeRobot {
         CommandBase.oi.invertArcadeDriveButton.whenPressed(new InvertArcadeDrive());
         
         CommandBase.oi.toggleIntakeExtensionButton.whenPressed(new InvertIntake());
-        CommandBase.oi.fireButton.whenPressed(fireAutomatedCommand);
+        CommandBase.oi.fireButton.whenPressed(
+                (CommandBase.launcher.isFiring) ? new DoNothing() : fireAutomatedCommand);
         CommandBase.oi.cancelFireButton.cancelWhenPressed(fireAutomatedCommand);
         
         // Reset gyro

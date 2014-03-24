@@ -5,7 +5,6 @@
  */
 package krunch17.launcher;
 
-import edu.wpi.first.wpilibj.Timer;
 import krunch17.CommandBase;
 
 /**
@@ -23,6 +22,7 @@ public class FireLauncher extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         // We only want to fire if we are all the way at the bottom
+        launcher.isFiring = true;
         initiallyCanceled = !launcher.isBottomStopPressed();
         isFinished = false;
     }
@@ -35,13 +35,11 @@ public class FireLauncher extends CommandBase {
                 intake.setIsLockedToExtend(true); // Get intake out of the way
                 if(!intake.isExtended()){
                     intake.extendPiston(); // Extend it out of the way
-//                    Timer.delay(intake.PISTON_DELAY);
                     intake.setExtendedStateVariable(intake.kExtended);
                 }
                 launcher.setMotors(launcher.RAISE_POWER);
             } else {
                 launcher.stop();
-//                Timer.delay(launcher.FIRING_DELAY);
                 isFinished = true;
             }
             
@@ -57,6 +55,7 @@ public class FireLauncher extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        launcher.isFiring = false;
     }
 
     // Called when another command which requires one or more of the same
