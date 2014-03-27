@@ -25,7 +25,7 @@ public class OI {
         invertArcadeDriveButton = new JoystickButton(driverJoystick, 8);
         
         toggleIntakeExtensionButton = new JoystickButton(shooterGamepad, 5);
-        fireButton = new JoystickButton(shooterGamepad, 6);
+        fireButton = new JoystickButton(shooterGamepad, 4);
         cancelFireButton = new JoystickButton(shooterGamepad, 1);
     }
     
