@@ -20,6 +20,7 @@ public class Intake extends Subsystem {
     public static final boolean kExtended = true;
     public static final boolean kRetracted = false;
     public static final double PISTON_DELAY = 1.00;
+    public static final float ROLL_POWER = 1.0f;
     
     boolean isInverted, isExtended;
     boolean isLockedToExtend;
@@ -52,7 +53,7 @@ public class Intake extends Subsystem {
     }
         
     public void setRoller(float power){
-        float invertCoef = isInverted ? -1.0f : 1.0f;
+        float invertCoef = isInverted ? -ROLL_POWER : ROLL_POWER;
         roller.set(invertCoef * power);
     }       
             
