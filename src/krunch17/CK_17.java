@@ -22,7 +22,9 @@ import krunch17.intake.RetractIntake;
 import krunch17.intake.RollerTeleop;
 import krunch17.launcher.FireLauncher;
 import krunch17.launcher.FireLauncherAutomated;
+import krunch17.launcher.LauncherOverride;
 import krunch17.launcher.TestLauncher;
+import krunch17.launcher.TrussShotAutomated;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,7 +38,7 @@ public class CK_17 extends IterativeRobot {
     SendableChooser autoChooser;
     Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
             testLauncherCommand, rollerControlCommand, initialRetractCommand,
-            fireAutomatedCommand;
+            fireAutomatedCommand, trussAutomatedCommand, launcherOverride;
 
     public void robotInit() {
         // Initialize all subsystems
@@ -58,6 +60,9 @@ public class CK_17 extends IterativeRobot {
         testLauncherCommand = new TestLauncher();
         initialRetractCommand = new RetractIntake();
         fireAutomatedCommand = new FireLauncherAutomated();
+        trussAutomatedCommand = new TrussShotAutomated();
+        launcherOverride = new LauncherOverride(fireAutomatedCommand, trussAutomatedCommand);
+        
         
         // Map commands to buttons
         CommandBase.oi.shiftButton.whenPressed(new ShiftToInverted());
@@ -65,12 +70,14 @@ public class CK_17 extends IterativeRobot {
         
         CommandBase.oi.toggleIntakeExtensionButton.whenPressed(new InvertIntake());
         CommandBase.oi.fireButton.whenPressed(fireAutomatedCommand);
-        CommandBase.oi.cancelFireButton.cancelWhenPressed(fireAutomatedCommand);
+        CommandBase.oi.trussShotButton.whenPressed(trussAutomatedCommand);
+        
+        CommandBase.oi.cancelFireButton.whenPressed(launcherOverride);
         
         // Reset gyro
-        RobotMap.turnGyro.reset(); // Takes like 5 seconds
+//        RobotMap.turnGyro.reset(); // Takes like 5 seconds
         
-        SmartDashboard.putNumber("RAISE_POWER", CommandBase.launcher.RAISE_POWER);
+//        SmartDashboard.putNumber("RAISE_POWER", CommandBase.launcher.HIGH_GOAL_RAISE_POWER);
         
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");
@@ -107,7 +114,7 @@ public class CK_17 extends IterativeRobot {
         rollerControlCommand.start();
         initialRetractCommand.start();
         
-        CommandBase.launcher.RAISE_POWER = (float) SmartDashboard.getNumber("RAISE_POWER");
+//        CommandBase.launcher.HIGH_GOAL_RAISE_POWER = (float) SmartDashboard.getNumber("RAISE_POWER");
     }
 
     /**
