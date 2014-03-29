@@ -24,7 +24,7 @@ public class DriveThenHotShot extends CommandGroup {
     public DriveThenHotShot() {
 //        addSequential(new Wait(0.75));
 //        addSequential(new CheckForHotGoal());
-        addSequential(new DriveStraight(1.4)); // Drive for time
+        addSequential(new DriveStraight(1.5)); // Drive for time
         addSequential(new Wait(0.5)); // Wait to stop completely
         addSequential(new RollIn());
         addSequential(new Wait(0.25));
