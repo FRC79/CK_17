@@ -17,6 +17,6 @@ public class SimpleDrive extends CommandGroup {
     
     public SimpleDrive() {
         // Maybe wait a bit for the pneumatics to kick in
-        addSequential(new DriveStraight(AutonSettings.DRIVE_TIME)); // Drive for time
+        addSequential(new DriveStraight(1.0)); // Drive for time
     }
 }

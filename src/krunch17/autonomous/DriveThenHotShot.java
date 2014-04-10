@@ -22,17 +22,17 @@ import krunch17.util.Wait;
 public class DriveThenHotShot extends CommandGroup {
     
     public DriveThenHotShot() {
-        addSequential(new Wait(AutonSettings.HOT_GOAL_LAG_DELAY));
+        addSequential(new Wait(0.25));
         addSequential(new CheckForHotGoal());
-        addSequential(new DriveStraight(AutonSettings.DRIVE_TIME)); // Drive for time
-        addSequential(new Wait(AutonSettings.DECEL_TIME)); // Wait to stop completely
+        addSequential(new DriveStraight(1.4)); // Drive for time
+        addSequential(new Wait(0.5)); // Wait to stop completely
         addSequential(new RollIn());
-        addSequential(new Wait(AutonSettings.ROLL_IN_TIME));
+        addSequential(new Wait(0.25));
         addSequential(new StopRoller());
         addSequential(new Wait(0.004));
         addSequential(new ExtendIntake());
-        addSequential(new Wait(AutonSettings.EXTEND_INTAKE_DELAY + AutonSettings.FIRE_DELAY));
-        addSequential(new WaitForHotGoal(AutonSettings.HOT_GOAL_SWITCH_TIME));
+        addSequential(new Wait(0.5 + 0.5));
+        addSequential(new WaitForHotGoal(2.5));
         addSequential(new FireLauncher()); // Launcher will retract after fire
     }
 }
