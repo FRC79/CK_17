@@ -23,36 +23,36 @@ public class DoNothing extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//        Timer.delay(0.5);
-//        System.out.println("I'm just a poor bot...");
-//        Timer.delay(0.5);
-//        System.out.println("Got no good auton modes\n");
-//        Timer.delay(0.5);
-//        System.out.println("Cause I'm easy come...");
-//        Timer.delay(0.25);
-//        System.out.println("easy go.");
-//        Timer.delay(0.25);
-//        System.out.println("little high");
-//        Timer.delay(0.25);
-//        System.out.println("little low\n");
-//        Timer.delay(1);
-//        System.out.println("...but it doesn't really matter");
-//        Timer.delay(0.5);
-//        System.out.println("...to me.\n");
-//        Timer.delay(0.5);
-//        System.out.println("...\n");
-//        Timer.delay(2);
-//        System.out.println("Toooo me.\n");
-//        Timer.delay(2);
-//        System.out.print("Any ");
-//        Timer.delay(0.25);
-//        System.out.print("way ");
-//        Timer.delay(0.25);
-//        System.out.print("the ");
-//        Timer.delay(0.125);
-//        System.out.print("match ");
-//        Timer.delay(0.25);
-//        System.out.print("goes.\n");
+        Timer.delay(0.5);
+        System.out.println("I'm just a poor bot...");
+        Timer.delay(0.5);
+        System.out.println("Got no good auton modes\n");
+        Timer.delay(0.5);
+        System.out.println("Cause I'm easy come...");
+        Timer.delay(0.25);
+        System.out.println("easy go.");
+        Timer.delay(0.25);
+        System.out.println("little high");
+        Timer.delay(0.25);
+        System.out.println("little low\n");
+        Timer.delay(1);
+        System.out.println("...but it doesn't really matter");
+        Timer.delay(0.5);
+        System.out.println("...to me.\n");
+        Timer.delay(0.5);
+        System.out.println("...\n");
+        Timer.delay(2);
+        System.out.println("Toooo me.\n");
+        Timer.delay(2);
+        System.out.print("Any ");
+        Timer.delay(0.25);
+        System.out.print("way ");
+        Timer.delay(0.25);
+        System.out.print("the ");
+        Timer.delay(0.125);
+        System.out.print("match ");
+        Timer.delay(0.25);
+        System.out.print("goes.\n");
     }
 
     // Make this return true when this Command no longer needs to run execute()

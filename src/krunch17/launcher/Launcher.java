@@ -26,8 +26,6 @@ public class Launcher extends Subsystem {
     public static float RAISE_POWER = 0.97f;    
     public static final double ENCODER_LIMIT = 0.4;
     
-    public boolean isFiring;
-    
     private double encoderOffset;
     
     CANJaguar motorL, motorR;
@@ -37,8 +35,6 @@ public class Launcher extends Subsystem {
         // Init local variables
         motorL = RobotMap.leftLauncherMotor;
         motorR = RobotMap.rightLauncherMotor;
-        
-        isFiring = false;
         
         try {
             // Configure Jaguars
