@@ -19,8 +19,6 @@ import krunch17.util.Wait;
  */
 public class SimpleDriveThenShot extends CommandGroup {
     
-    public static float HIGH_GOAL_RAISE_POWER = 0.90f;
-    
     public SimpleDriveThenShot() {
 //        Command rollCommand = new RollIn();
         addSequential(new DriveStraight(1.0)); // Drive for time
@@ -31,6 +29,6 @@ public class SimpleDriveThenShot extends CommandGroup {
         addSequential(new Wait(0.004));
         addSequential(new ExtendIntake());
         addSequential(new Wait(0.5 + 0.5));
-        addSequential(new FireLauncher(HIGH_GOAL_RAISE_POWER)); // Launcher will retract after fire
+        addSequential(new FireLauncher()); // Launcher will retract after fire
     }
 }

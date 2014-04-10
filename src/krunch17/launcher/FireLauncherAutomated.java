@@ -17,12 +17,10 @@ import krunch17.util.Wait;
  */
 public class FireLauncherAutomated extends CommandGroup {
     
-    public static float HIGH_GOAL_RAISE_POWER = 0.90f;
-    
     public FireLauncherAutomated() {
         addSequential(new Wait(0.004));
         addSequential(new ExtendIntake());
         addSequential(new Wait(0.5 + 0.5));
-        addSequential(new FireLauncher(HIGH_GOAL_RAISE_POWER)); // Launcher will retract after fire
+        addSequential(new FireLauncher()); // Launcher will retract after fire
     }
 }
