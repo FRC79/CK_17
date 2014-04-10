@@ -31,7 +31,7 @@ public abstract class CommandBase extends Command {
         
         // Show what command your subsystem is running on the SmartDashboard
         drive = new Drivetrain();
-        intake = new Intake();
+        intake = new Intake(true);
         launcher = new Launcher();
     }
 
