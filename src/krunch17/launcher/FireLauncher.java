@@ -15,9 +15,11 @@ import krunch17.CommandBase;
 public class FireLauncher extends CommandBase {
     
     boolean initiallyCanceled, isFinished;
+    float power;
     
-    public FireLauncher() {
+    public FireLauncher(float power) {
         requires(launcher);
+        this.power = power;
     }
 
     // Called just before this Command runs the first time
@@ -38,7 +40,7 @@ public class FireLauncher extends CommandBase {
 //                    Timer.delay(intake.PISTON_DELAY);
                     intake.setExtendedStateVariable(intake.kExtended);
                 }
-                launcher.setMotors(launcher.RAISE_POWER);
+                launcher.setMotors(power);
             } else {
                 launcher.stop();
 //                Timer.delay(launcher.FIRING_DELAY);

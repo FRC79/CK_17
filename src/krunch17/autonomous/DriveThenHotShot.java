@@ -20,6 +20,8 @@ import krunch17.util.Wait;
  */
 public class DriveThenHotShot extends CommandGroup {
     
+    public static float HIGH_GOAL_RAISE_POWER = 0.90f;
+    
     public DriveThenHotShot() {
         addSequential(new DriveStraight(1.5)); // Drive for time
         addSequential(new Wait(0.5)); // Wait to stop completely
@@ -30,6 +32,6 @@ public class DriveThenHotShot extends CommandGroup {
         addSequential(new ExtendIntake());
         addSequential(new Wait(0.5 + 0.5));
         addSequential(new WaitForHotGoal(2.5));
-        addSequential(new FireLauncher()); // Launcher will retract after fire
+        addSequential(new FireLauncher(HIGH_GOAL_RAISE_POWER)); // Launcher will retract after fire
     }
 }

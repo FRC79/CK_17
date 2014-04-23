@@ -23,7 +23,6 @@ public class Launcher extends Subsystem {
     public static final double FIRING_DELAY = 1.0;
     
     public static final float LOWER_POWER = -0.5f;
-    public static float RAISE_POWER = 0.90f;    
     public static final double ENCODER_LIMIT = 0.4;
     
     private double encoderOffset;
