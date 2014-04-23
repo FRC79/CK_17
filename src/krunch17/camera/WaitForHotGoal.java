@@ -22,11 +22,11 @@ public class WaitForHotGoal extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        // Wait 5 seconds for the switch if the goal isn't hot yet
-        if(CheckForHotGoal.initiallyHot){
+        // Goal is hot, automatically proceed
+        if(KrunchVisionServer.getInstance().getCount() > 20){
             setTimeout(0.0);
         } else {
-            // Goal is hot, automatically proceed
+            // Wait for the switch if the goal isn't hot yet
             setTimeout(switchTime);
         }
     }

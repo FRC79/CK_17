@@ -3,7 +3,6 @@ package krunch17;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.NamedSendable;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -13,6 +12,7 @@ import krunch17.autonomous.DoNothing;
 import krunch17.autonomous.DriveThenHotShot;
 import krunch17.autonomous.SimpleDrive;
 import krunch17.autonomous.SimpleDriveThenShot;
+import krunch17.camera.KrunchVisionServer;
 import krunch17.drivetrain.ArcadeDrive;
 import krunch17.drivetrain.InvertArcadeDrive;
 import krunch17.drivetrain.ShiftToHighGear;
@@ -20,7 +20,6 @@ import krunch17.drivetrain.ShiftToInverted;
 import krunch17.intake.InvertIntake;
 import krunch17.intake.RetractIntake;
 import krunch17.intake.RollerTeleop;
-import krunch17.launcher.FireLauncher;
 import krunch17.launcher.FireLauncherAutomated;
 import krunch17.launcher.TestLauncher;
 
@@ -37,11 +36,18 @@ public class CK_17 extends IterativeRobot {
     Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
             testLauncherCommand, rollerControlCommand, initialRetractCommand,
             fireAutomatedCommand;
+    
+    KrunchVisionServer server = KrunchVisionServer.getInstance();
+    public final int listenPort = 1180;
 
     public void robotInit() {
         // Initialize all subsystems
         RobotMap.init();
         CommandBase.init();
+        
+        // Setup webcam server
+        server.setPort(listenPort);
+        server.start();
         
         // Init autonomous modes (And send to dashboard selector)
         autoChooser = new SendableChooser();
@@ -78,6 +84,10 @@ public class CK_17 extends IterativeRobot {
     }
 
     public void autonomousInit() {
+        // Reset hot goal counts
+        server.reset();
+        server.startSamplingCounts();
+        
         RobotMap.compressor.start(); // Start compressor
         initialShiftCommand.start();
         autonomousCommand = (Command)autoChooser.getSelected();
@@ -90,9 +100,10 @@ public class CK_17 extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        System.out.println("SERVER COUNT: " + server.getCount());
 //        SmartDashboard.putNumber("ENC", CommandBase.drive.getAvgRevs());
     }
-
+    
     public void teleopInit() {
         // Try catch just in case auton isn't set yet
         try {
@@ -120,6 +131,9 @@ public class CK_17 extends IterativeRobot {
 
     
     public void disabledInit() {
+        // Stop counting
+        server.stopSamplingCounts();
+        
         Scheduler.getInstance().removeAll(); // Stop all commands
         RobotMap.compressor.stop(); // Stop compressor
     }

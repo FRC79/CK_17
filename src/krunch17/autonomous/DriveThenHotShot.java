@@ -6,7 +6,6 @@
 package krunch17.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import krunch17.camera.CheckForHotGoal;
 import krunch17.camera.WaitForHotGoal;
 import krunch17.drivetrain.DriveStraight;
 import krunch17.intake.ExtendIntake;
@@ -22,8 +21,6 @@ import krunch17.util.Wait;
 public class DriveThenHotShot extends CommandGroup {
     
     public DriveThenHotShot() {
-//        addSequential(new Wait(0.75));
-//        addSequential(new CheckForHotGoal());
         addSequential(new DriveStraight(1.5)); // Drive for time
         addSequential(new Wait(0.5)); // Wait to stop completely
         addSequential(new RollIn());
