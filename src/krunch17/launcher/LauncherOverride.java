@@ -14,17 +14,19 @@ import krunch17.CommandBase;
  */
 public class LauncherOverride extends CommandBase {
     
-    Command fire, truss;
+    Command fire, truss, pass;
     
-    public LauncherOverride(Command fire, Command truss) {
+    public LauncherOverride(Command fire, Command truss, Command pass) {
         this.fire = fire;
         this.truss = truss;
+        this.pass = pass;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
         fire.cancel();
         truss.cancel();
+        pass.cancel();
     }
 
     // Called repeatedly when this Command is scheduled to run

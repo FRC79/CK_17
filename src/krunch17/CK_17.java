@@ -22,6 +22,7 @@ import krunch17.intake.RetractIntake;
 import krunch17.intake.RollerTeleop;
 import krunch17.launcher.FireLauncherAutomated;
 import krunch17.launcher.LauncherOverride;
+import krunch17.launcher.LightPassAutomated;
 import krunch17.launcher.TestLauncher;
 import krunch17.launcher.TrussShotAutomated;
 
@@ -37,7 +38,8 @@ public class CK_17 extends IterativeRobot {
     SendableChooser autoChooser;
     Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
             testLauncherCommand, rollerControlCommand, initialRetractCommand,
-            fireAutomatedCommand, trussAutomatedCommand, launcherOverride;
+            fireAutomatedCommand, trussAutomatedCommand, lightPassAutomated,
+            launcherOverride;
     
     KrunchVisionServer server = KrunchVisionServer.getInstance();
     public final int listenPort = 1180;
@@ -67,7 +69,9 @@ public class CK_17 extends IterativeRobot {
         initialRetractCommand = new RetractIntake();
         fireAutomatedCommand = new FireLauncherAutomated();
         trussAutomatedCommand = new TrussShotAutomated();
-        launcherOverride = new LauncherOverride(fireAutomatedCommand, trussAutomatedCommand);
+        lightPassAutomated = new LightPassAutomated();
+        launcherOverride = new LauncherOverride(fireAutomatedCommand, 
+                trussAutomatedCommand, lightPassAutomated);
         
         
         // Map commands to buttons
@@ -75,8 +79,10 @@ public class CK_17 extends IterativeRobot {
         CommandBase.oi.invertArcadeDriveButton.whenPressed(new InvertArcadeDrive());
         
         CommandBase.oi.toggleIntakeExtensionButton.whenPressed(new InvertIntake());
+        
         CommandBase.oi.fireButton.whenPressed(fireAutomatedCommand);
         CommandBase.oi.trussShotButton.whenPressed(trussAutomatedCommand);
+        CommandBase.oi.lightPassButton.whenPressed(lightPassAutomated);
         
         CommandBase.oi.cancelFireButton.whenPressed(launcherOverride);
         
