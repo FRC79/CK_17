@@ -20,7 +20,7 @@ import krunch17.util.Wait;
  */
 public class DriveThenHotShot extends CommandGroup {
     
-    public static float HIGH_GOAL_RAISE_POWER = 0.90f;
+    public static float HIGH_GOAL_RAISE_POWER = 0.92f;
     
     public DriveThenHotShot() {
         addSequential(new DriveStraight(1.5)); // Drive for time
