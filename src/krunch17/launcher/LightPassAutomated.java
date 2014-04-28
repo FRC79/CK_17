@@ -15,7 +15,7 @@ import krunch17.util.Wait;
  */
 public class LightPassAutomated extends CommandGroup {
     
-    public static float PASS_RAISE_POWER = 0.5f;
+    public static float PASS_RAISE_POWER = 0.6f;
     
     public LightPassAutomated() {
         addSequential(new Wait(0.004));
