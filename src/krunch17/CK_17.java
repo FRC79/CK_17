@@ -54,12 +54,12 @@ public class CK_17 extends IterativeRobot {
         server.start();
         
         // Init autonomous modes (And send to dashboard selector)
-        autoChooser = new SendableChooser();
-        autoChooser.addObject("Simple Drive", new SimpleDrive());
-        autoChooser.addObject("Simple Drive Then Shot", new SimpleDriveThenShot());
-        autoChooser.addDefault("Drive Then Hot Shot", new DriveThenHotShot());
-        autoChooser.addObject("Do Nothing", new DoNothing());
-        SmartDashboard.putData("Choose an autonomous mode", autoChooser);
+//        autoChooser = new SendableChooser();
+//        autoChooser.addObject("Simple Drive", new SimpleDrive());
+//        autoChooser.addObject("Simple Drive Then Shot", new SimpleDriveThenShot());
+//        autoChooser.addDefault("Drive Then Hot Shot", new DriveThenHotShot());
+//        autoChooser.addObject("Do Nothing", new DoNothing());
+//        SmartDashboard.putData("Choose an autonomous mode", autoChooser);
         
         // instantiate commands
         arcadeDriveCommand = new ArcadeDrive();
@@ -80,8 +80,8 @@ public class CK_17 extends IterativeRobot {
         
         CommandBase.oi.toggleIntakeExtensionButton.whenPressed(new InvertIntake());
         
-        CommandBase.oi.fireButton.whenPressed(fireAutomatedCommand);
-        CommandBase.oi.trussShotButton.whenPressed(trussAutomatedCommand);
+//        CommandBase.oi.fireButton.whenPressed(fireAutomatedCommand);
+//        CommandBase.oi.trussShotButton.whenPressed(trussAutomatedCommand);
         CommandBase.oi.lightPassButton.whenPressed(lightPassAutomated);
         
         CommandBase.oi.cancelFireButton.whenPressed(launcherOverride);
@@ -103,8 +103,8 @@ public class CK_17 extends IterativeRobot {
         
         RobotMap.compressor.start(); // Start compressor
         initialShiftCommand.start();
-        autonomousCommand = (Command)autoChooser.getSelected();
-        autonomousCommand.start(); // schedule the autonomous command
+//        autonomousCommand = (Command)autoChooser.getSelected();
+//        autonomousCommand.start(); // schedule the autonomous command
         initialRetractCommand.start();
     }
 
@@ -120,7 +120,7 @@ public class CK_17 extends IterativeRobot {
     public void teleopInit() {
         // Try catch just in case auton isn't set yet
         try {
-            autonomousCommand.cancel(); // Make sure auton is finished
+//            autonomousCommand.cancel(); // Make sure auton is finished
         } catch (Exception ex){
             ex.printStackTrace();
         }
